@@ -88,13 +88,26 @@
             background: rgba(255, 107, 0, 0.1);
             border-radius: 4px;
         }
+
+        /* AI Feature Styles */
+        .ai-glow {
+            box-shadow: 0 0 20px rgba(255, 107, 0, 0.15);
+            border: 1px solid rgba(255, 107, 0, 0.2);
+        }
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        .loading-animation {
+            animation: pulse-slow 1.5s infinite;
+        }
     </style>
 </head>
 <body class="selection:bg-orange-500/30">
 
     <div class="max-w-4xl mx-auto px-6 py-12 md:py-24">
         
-        <!-- Logo Section -->
+        <!-- Header Section -->
         <header class="text-center mb-24">
             <div class="mb-10 flex justify-center items-center space-x-6">
                 <svg class="logo-icon w-10 h-10 text-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -105,7 +118,10 @@
                 <span class="text-4xl md:text-5xl font-black tracking-tighter text-white">DNOTITIA</span>
                 <svg class="logo-icon w-10 h-10 text-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                    <path d="M9 4v16M15 4v16M4 9h16M4 15h16"></path>
+                    <path d="M9 4v16"></path>
+                    <path d="M15 4v16"></path>
+                    <path d="M4 9h16"></path>
+                    <path d="M4 15h16"></path>
                 </svg>
             </div>
             
@@ -119,6 +135,45 @@
             <p class="text-white text-2xl md:text-3xl font-bold opacity-90">디노티시아와 함께합시다</p>
         </header>
 
+        <!-- ✨ AI Matcher Section -->
+        <section class="mb-24 glass-card rounded-[2.5rem] p-8 md:p-14 ai-glow overflow-hidden relative">
+            <div class="relative z-10">
+                <div class="flex items-center mb-6">
+                    <span class="text-3xl mr-3">✨</span>
+                    <h2 class="text-2xl font-bold text-white tracking-tight">AI 맞춤 직무 추천기</h2>
+                </div>
+                <p class="text-slate-400 mb-10 text-lg leading-relaxed">
+                    본인의 기술 스택이나 경험을 입력해 보세요. <br class="hidden md:block">
+                    디노티시아의 채용 포지션 중 가장 적합한 직무를 추천해 드립니다.
+                </p>
+
+                <div class="space-y-4">
+                    <textarea 
+                        id="user-skills" 
+                        class="w-full bg-white/5 border border-white/10 rounded-2xl p-6 text-slate-200 focus:outline-none focus:border-orange/50 transition-colors placeholder:text-slate-600 h-40 resize-none text-lg"
+                        placeholder="예: C/C++, Linux Kernel 개발 경험이 있고 반도체 드라이버 설계에 관심이 많습니다."></textarea>
+                    
+                    <button 
+                        onclick="matchJob()" 
+                        id="match-btn"
+                        class="w-full bg-orange hover:bg-orange-light text-white font-black text-xl py-5 rounded-2xl transition-all shadow-xl shadow-orange-600/30 flex items-center justify-center active:scale-[0.98]">
+                        <span id="btn-text">나에게 맞는 직무 찾기 ✨</span>
+                    </button>
+                </div>
+
+                <div id="ai-result" class="mt-8 hidden">
+                    <div class="p-8 bg-white/5 rounded-2xl border border-orange/30">
+                        <div id="ai-loading" class="text-center py-8 hidden">
+                            <p class="text-orange font-black text-xl loading-animation">디노티시아에서 어울리는 포지션을 찾고 있습니다</p>
+                        </div>
+                        <div id="ai-content" class="space-y-4">
+                            <!-- AI Response will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Recruitment Positions -->
         <section class="mb-24">
             <div class="flex items-center justify-center mb-16">
@@ -127,20 +182,20 @@
 
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- 01 System SW -->
-                <div class="job-category-card p-8 rounded-2xl">
+                <div class="job-category-card p-8 rounded-2xl" id="cat-system-sw">
                     <h3 class="text-orange font-black text-xl mb-6 flex items-center">
                         <span class="mr-3 opacity-50 text-sm font-normal">01</span> System SW
                     </h3>
                     <div class="space-y-4">
-                        <a href="https://dno.career.greetinghr.com/ko/o/198745" target="_blank" class="job-link">
+                        <a href="https://dno.career.greetinghr.com/ko/o/198745" target="_blank" class="job-link" data-role="Device Driver Software Engineer">
                             Device Driver Software Engineer
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/198793" target="_blank" class="job-link">
+                        <a href="https://dno.career.greetinghr.com/ko/o/198793" target="_blank" class="job-link" data-role="Firmware Software Engineer">
                             Firmware Software Engineer
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/199727" target="_blank" class="job-link">
+                        <a href="https://dno.career.greetinghr.com/ko/o/199727" target="_blank" class="job-link" data-role="Vector Library Engineer">
                             Vector Library Engineer
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
@@ -148,20 +203,20 @@
                 </div>
 
                 <!-- 02 SoC -->
-                <div class="job-category-card p-8 rounded-2xl">
+                <div class="job-category-card p-8 rounded-2xl" id="cat-soc">
                     <h3 class="text-orange font-black text-xl mb-6 flex items-center">
                         <span class="mr-3 opacity-50 text-sm font-normal">02</span> SoC
                     </h3>
                     <div class="space-y-4">
-                        <a href="https://dno.career.greetinghr.com/ko/o/196737" target="_blank" class="job-link">
+                        <a href="https://dno.career.greetinghr.com/ko/o/196737" target="_blank" class="job-link" data-role="Design Verification Engineer">
                             Design Verification Engineer
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/196734" target="_blank" class="job-link">
+                        <a href="https://dno.career.greetinghr.com/ko/o/196734" target="_blank" class="job-link" data-role="SoC / RTL Design Engineer">
                             SoC / RTL Design Engineer
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/203021" target="_blank" class="job-link">
+                        <a href="https://dno.career.greetinghr.com/ko/o/203021" target="_blank" class="job-link" data-role="SoC Firmware Engineer">
                             SoC Firmware Engineer
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
@@ -169,20 +224,20 @@
                 </div>
 
                 <!-- 03 Data -->
-                <div class="job-category-card p-8 rounded-2xl">
+                <div class="job-category-card p-8 rounded-2xl" id="cat-data">
                     <h3 class="text-orange font-black text-xl mb-6 flex items-center">
                         <span class="mr-3 opacity-50 text-sm font-normal">03</span> Data
                     </h3>
                     <div class="space-y-4">
-                        <a href="https://dno.career.greetinghr.com/ko/o/200913" target="_blank" class="job-link">
+                        <a href="https://dno.career.greetinghr.com/ko/o/200913" target="_blank" class="job-link" data-role="Vector Database Engineer">
                             Vector Database Engineer
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/198903" target="_blank" class="job-link">
+                        <a href="https://dno.career.greetinghr.com/ko/o/198903" target="_blank" class="job-link" data-role="Storage System Software Engineer">
                             Storage System Software Engineer
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/202104" target="_blank" class="job-link">
+                        <a href="https://dno.career.greetinghr.com/ko/o/202104" target="_blank" class="job-link" data-role="Quality Assurance Engineer">
                             Quality Assurance Engineer
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
@@ -190,29 +245,30 @@
                 </div>
 
                 <!-- 04 Core -->
-                <div class="job-category-card p-8 rounded-2xl">
+                <div class="job-category-card p-8 rounded-2xl" id="cat-core">
                     <h3 class="text-orange font-black text-xl mb-6 flex items-center">
                         <span class="mr-3 opacity-50 text-sm font-normal">04</span> Core
                     </h3>
                     <div class="space-y-4">
-                        <a href="https://dno.career.greetinghr.com/ko/o/198531" target="_blank" class="job-link">
+                        <a href="https://dno.career.greetinghr.com/ko/o/198531" target="_blank" class="job-link" data-role="Optimization Engineer">
                             Optimization Engineer
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/202141" target="_blank" class="job-link">
+                        <a href="https://dno.career.greetinghr.com/ko/o/202141" target="_blank" class="job-link" data-role="DevOps Engineer">
                             DevOps Engineer
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/206229" target="_blank" class="job-link">
+                        <a href="https://dno.career.greetinghr.com/ko/o/206229" target="_blank" class="job-link" data-role="System Architect">
                             System Architect
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </a>
                     </div>
                 </div>
             </div>
+            <p class="mt-8 text-center text-slate-500 text-sm">※ 각 직무 클릭 시 상세 공고 페이지로 연결됩니다.</p>
         </section>
 
-        <!-- About Dnotitia with News Links -->
+        <!-- About Dnotitia -->
         <section class="glass-card rounded-3xl p-10 md:p-14 mb-24">
             <h2 class="text-3xl font-bold mb-8 italic text-orange">About Dnotitia</h2>
             <div class="text-slate-300 leading-relaxed space-y-6 text-lg">
@@ -222,7 +278,6 @@
             </div>
         </section>
 
-        <!-- Differentiation -->
         <section class="mb-24">
             <div class="flex items-center justify-center mb-16">
                 <h2 class="section-title text-3xl font-black tracking-tight text-white text-center">디노티시아는 이렇게 다릅니다</h2>
@@ -230,7 +285,7 @@
             <div class="grid md:grid-cols-3 gap-8 text-base">
                 <div class="p-8 bg-white/5 rounded-3xl border border-white/5 hover:bg-white/[0.08] transition-colors">
                     <div class="text-4xl mb-6">🌱</div>
-                    <p class="leading-relaxed text-slate-200">가르쳐주는 사람도 없이 맨땅에 헤딩하도록 두지 않습니다. 경험과 실력을 겸비한 <strong>선배의 피드백</strong>을 받으며 성장할 수 있습니다.</p>
+                    <p class="leading-relaxed text-slate-200">가르쳐주는 사람도 없이 맨땅에 헤딩하도록 두지 않습니다. 경험과 실력이 뛰어난 <strong>선배들의 피드백</strong>을 받으며 성장할 수 있습니다.</p>
                 </div>
                 <div class="p-8 bg-white/5 rounded-3xl border border-white/5 hover:bg-white/[0.08] transition-colors">
                     <div class="text-4xl mb-6">🎯</div>
@@ -278,5 +333,110 @@
         </footer>
     </div>
 
+    <!-- AI Logic Script -->
+    <script>
+        // API Key는 환경에 의해 주입됩니다.
+        const apiKey = ""; 
+        const modelName = "gemini-2.5-flash-preview-09-2025"; 
+
+        // 포지션별 미션 설명 매핑
+        const roleDescriptions = {
+            "Device Driver Software Engineer": "디노티시아 System Software팀은 제품이 작동하기 위한 Runtime과 Firmware를 개발하며 전체적인 소프트웨어 아키텍처를 설계하고 있습니다.",
+            "Firmware Software Engineer": "디노티시아 System Software팀은 제품이 작동하기 위한 Runtime과 Firmware를 개발하며 전체적인 소프트웨어 아키텍처를 설계하고 있습니다.",
+            "Vector Library Engineer": "디노티시아 Vector Platform팀은 대규모 벡터 데이터를 효율적으로 처리할 수 있는 라이브러리를 개발하고 있습니다.",
+            "Design Verification Engineer": "디노티시아 Design Verification팀은 SoC의 기능과 성능을 검증할 수 있는 테스트 방법론과 테스트벤치를 설계하고 있습니다.",
+            "SoC / RTL Design Engineer": "디노티시아 SoC Design팀은 고성능 및 저전력 RTL 블록을 설계하고 양산용 반도체 칩을 개발하고 있습니다.",
+            "SoC Firmware Engineer": "디노티시아 Hardware Platform팀은 SoC에 통합되는 IP의 동작을 이해하고 검증하는 역할을 수행하고 있습니다.",
+            "Vector Database Engineer": "디노티시아 Database팀은 AI가 의미 기반 검색을 수행할 수 있도록 벡터 데이터가 생성되고 저장되는 과정을 책임지고 있습니다.",
+            "Storage System Software Engineer": "디노티시아 Storage팀은 대규모 벡터 데이터베이스와 AI 워크로드에 최적화된 고성능 스토리지 시스템을 개발하고 있습니다.",
+            "Quality Assurance Engineer": "디노티시아 Product팀은 벡터 데이터베이스와 VDPU의 품질 테스트를 통해 성능과 안정성을 보증하고 있습니다.",
+            "Optimization Engineer": "디노티시아 AI Platform팀은 LLM 성능을 극대화할 수 있는 최적화 기법을 구현하고 있습니다.",
+            "DevOps Engineer": "디노티시아 Engineering팀은 안정적인 환경에서 제품을 개발할 수 있도록 인프라를 구축하고 있습니다.",
+            "System Architect": "디노티시아 Architecture팀은 하드웨어와 소프트웨어를 아우르는 전체적인 청사진을 설계하고 있습니다."
+        };
+
+        const roles = Object.keys(roleDescriptions);
+
+        async function matchJob() {
+            const skillsInput = document.getElementById('user-skills').value.trim();
+            if (!skillsInput) { alertCustom("본인의 기술 스택이나 경험을 입력해 주세요!"); return; }
+
+            const resultDiv = document.getElementById('ai-result');
+            const loadingDiv = document.getElementById('ai-loading');
+            const contentDiv = document.getElementById('ai-content');
+            const matchBtn = document.getElementById('match-btn');
+
+            resultDiv.classList.remove('hidden');
+            loadingDiv.classList.remove('hidden'); 
+            contentDiv.innerHTML = '';
+            matchBtn.disabled = true;
+
+            const systemPrompt = `당신은 세계 최고의 장기기억 AI 전문기업 디노티시아의 채용 전문가입니다. 지원자의 경험을 분석하여 아래 리스트 중 가장 적합한 직무를 정확히 하나만 선정해 JSON 형식으로 답변하세요. 리스트: ${roles.join(', ')}. 형식: { "recommendedRole": "직무명", "reason": "이유 설명" }`;
+
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ parts: [{ text: `경험 요약: ${skillsInput}` }] }],
+                        systemInstruction: { parts: [{ text: systemPrompt }] }
+                    })
+                });
+
+                const result = await response.json();
+                const aiText = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (!aiText) throw new Error("API 응답이 비어있습니다.");
+
+                const cleanJson = aiText.replace(/```json|```/g, "").trim();
+                const aiResponse = JSON.parse(cleanJson);
+                
+                const matchedRole = aiResponse.recommendedRole;
+                const teamMission = roleDescriptions[matchedRole] || "해당 직무 정보를 준비 중입니다.";
+
+                contentDiv.innerHTML = `
+                    <div class="animate-fade-in">
+                        <h4 class="text-orange font-black text-2xl mb-4 text-center md:text-left">${matchedRole}</h4>
+                        <!-- 팀 미션 설명 추가 -->
+                        <div class="p-6 bg-white/5 rounded-2xl border-l-4 border-orange mb-6">
+                            <p class="text-slate-400 text-[10px] mb-2 font-bold tracking-widest uppercase opacity-70">Team Mission</p>
+                            <p class="text-slate-200 text-lg leading-relaxed font-medium">${teamMission}</p>
+                        </div>
+                        <!-- 분석 이유 설명 -->
+                        <div class="px-2">
+                             <p class="text-slate-400 text-[10px] mb-2 font-bold tracking-widest uppercase opacity-70">Matching Reason</p>
+                             <p class="text-slate-300 text-base leading-relaxed mb-6 italic opacity-90">${aiResponse.reason}</p>
+                        </div>
+                        <div class="pt-6 flex justify-center">
+                            <button onclick="scrollToJob('${matchedRole}')" class="w-full md:w-auto px-12 py-6 bg-orange/20 text-orange border border-orange/40 rounded-2xl font-black text-xl hover:bg-orange hover:text-white transition-all shadow-xl active:scale-95">
+                                공고 위치 확인하기 ↓
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                console.error("AI Matcher Error:", error);
+                contentDiv.innerHTML = `<p class="text-red-400 text-sm text-center font-bold">죄송합니다. 분석 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.</p>`;
+            } finally {
+                loadingDiv.classList.add('hidden');
+                matchBtn.disabled = false;
+            }
+        }
+
+        function scrollToJob(roleName) {
+            const target = document.querySelector(`[data-role="${roleName}"]`);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                target.classList.add('ring-4', 'ring-orange', 'ring-offset-8', 'ring-offset-navy');
+                setTimeout(() => target.classList.remove('ring-4', 'ring-orange'), 3000);
+            }
+        }
+
+        function alertCustom(msg) {
+            const resultDiv = document.getElementById('ai-result');
+            const contentDiv = document.getElementById('ai-content');
+            resultDiv.classList.remove('hidden');
+            contentDiv.innerHTML = `<p class="text-orange text-sm text-center font-bold py-4">${msg}</p>`;
+        }
+    </script>
 </body>
 </html>

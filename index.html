@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>dnotitia-recruit.com</title>
+    <!-- 주소창 위 탭에 표시되는 문구 -->
+    <title>디노티시아 채용</title>
     <!-- Tailwind CSS 표준 로드 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet">
@@ -22,10 +23,12 @@
         .text-orange { color: var(--brand-orange); }
         .bg-orange { background-color: var(--brand-orange); }
         
+        /* 로고 타이포그래피: 본문 로고는 다시 영문 Dnotitia로 */
         .logo-text {
             font-family: 'Pretendard', sans-serif;
             font-weight: 900;
             letter-spacing: -0.06em;
+            display: block;
         }
         
         .glass-card {
@@ -83,27 +86,16 @@
             background: rgba(255, 107, 0, 0.1);
             border-radius: 4px;
         }
-        .btn-kakao {
-            background-color: var(--kakao-yellow);
-            color: #371d1e;
-        }
     </style>
 </head>
 <body class="selection:bg-orange-500/30">
 
     <div class="max-w-4xl mx-auto px-6 py-12 md:py-24">
         
-        <!-- Header Section -->
+        <!-- Header Section: 본문 로고는 영문 Dnotitia 유지 -->
         <header class="text-center mb-24">
-            <div class="mb-10 flex flex-col items-center justify-center space-y-6">
-                <!-- 실제 로고 이미지 삽입 부분 -->
-                <!-- logo.png 파일을 같은 폴더에 업로드하면 바로 표시됩니다. -->
-                <img src="logo.png" alt="Dnotitia Logo" class="h-24 md:h-32 object-contain" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='flex';">
-                
-                <!-- 이미지가 없을 때 나타나는 백업 텍스트 로고 -->
-                <div id="fallback-logo" class="hidden items-center space-x-4">
-                    <span class="logo-text text-5xl md:text-6xl text-white tracking-tighter">Dnotitia</span>
-                </div>
+            <div class="mb-10">
+                <span class="logo-text text-6xl md:text-7xl text-white">Dnotitia</span>
             </div>
             
             <div class="inline-block px-5 py-1.5 text-xs font-extrabold tracking-widest text-orange-400 uppercase bg-orange-900/20 rounded-full border border-orange-500/30 mb-8">
@@ -169,7 +161,7 @@
             </div>
         </section>
 
-        <!-- About Dnotitia with News Links -->
+        <!-- About Dnotitia -->
         <section class="glass-card rounded-3xl p-10 md:p-14 mb-24">
             <h2 class="text-3xl font-bold mb-8 italic text-orange">About Dnotitia</h2>
             <div class="text-slate-300 leading-relaxed space-y-6 text-lg">
@@ -179,7 +171,7 @@
             </div>
         </section>
 
-        <!-- CTA & Footer -->
+        <!-- CTA Section -->
         <div class="grid md:grid-cols-2 gap-8 mb-24">
             <div class="p-10 border border-white/10 rounded-3xl bg-white/[0.01]">
                 <h3 class="text-xl font-bold mb-8 text-orange">근무 조건</h3>
@@ -198,7 +190,7 @@
                 <p class="text-xl font-bold mb-8">디노티시아 채용이 궁금하신가요?</p>
                 <div class="flex flex-col gap-4">
                     <a href="https://forms.gle/yBkLR8Vp8tf61Lh46" target="_blank" class="bg-orange px-8 py-4 rounded-2xl font-bold text-center text-white shadow-xl shadow-orange-600/30 hover:brightness-110 transition-all text-lg">커피챗 신청하기</a>
-                    <a href="https://open.kakao.com/o/sw3Shdqi" target="_blank" class="btn-kakao px-8 py-4 rounded-2xl font-bold shadow-lg transition-all flex items-center justify-center text-lg">
+                    <a href="https://open.kakao.com/o/sw3Shdqi" target="_blank" class="btn-kakao px-8 py-4 rounded-2xl font-bold shadow-lg transition-all flex items-center justify-center text-lg bg-[#FEE500] text-[#371d1e]">
                         <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 3.134-9 7 0 2.39 1.55 4.496 3.94 5.75-.145.54-.52 1.94-.596 2.22-.09.333.11.328.232.247.095-.064 1.514-.94 2.115-1.32.417.1.848.153 1.309.153 4.97 0 9-3.134 9-7s-4.03-7-9-7z"/></svg> 카카오톡 실시간 상담
                     </a>
                 </div>

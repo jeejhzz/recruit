@@ -22,11 +22,10 @@
         .text-orange { color: var(--brand-orange); }
         .bg-orange { background-color: var(--brand-orange); }
         
-        /* 로고 폰트 스타일: 전문적이고 단단한 느낌 */
         .logo-text {
             font-family: 'Pretendard', sans-serif;
             font-weight: 900;
-            letter-spacing: -0.05em; /* 자간 축소로 로고 느낌 강화 */
+            letter-spacing: -0.06em;
         }
         
         .glass-card {
@@ -57,17 +56,6 @@
             transform: translateX(6px);
             color: white;
         }
-        .btn-kakao {
-            background-color: var(--kakao-yellow);
-            color: #371d1e;
-        }
-        .btn-kakao:hover {
-            background-color: #fada00;
-            transform: scale(1.02);
-        }
-        .logo-icon {
-            filter: drop-shadow(0 0 8px rgba(255, 107, 0, 0.4));
-        }
         .section-title {
             position: relative;
             display: inline-block;
@@ -95,32 +83,27 @@
             background: rgba(255, 107, 0, 0.1);
             border-radius: 4px;
         }
+        .btn-kakao {
+            background-color: var(--kakao-yellow);
+            color: #371d1e;
+        }
     </style>
 </head>
 <body class="selection:bg-orange-500/30">
 
     <div class="max-w-4xl mx-auto px-6 py-12 md:py-24">
         
-        <!-- Logo Section -->
+        <!-- Header Section -->
         <header class="text-center mb-24">
-            <div class="mb-10 flex justify-center items-center space-x-5">
-                <!-- Data Wallet/System Icon -->
-                <svg class="logo-icon w-9 h-9 text-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
-                    <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
-                    <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
-                </svg>
+            <div class="mb-10 flex flex-col items-center justify-center space-y-6">
+                <!-- 실제 로고 이미지 삽입 부분 -->
+                <!-- logo.png 파일을 같은 폴더에 업로드하면 바로 표시됩니다. -->
+                <img src="logo.png" alt="Dnotitia Logo" class="h-24 md:h-32 object-contain" onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='flex';">
                 
-                <span class="logo-text text-5xl md:text-6xl text-white tracking-tighter">Dnotitia</span>
-                
-                <!-- AI Chip/Grid Icon -->
-                <svg class="logo-icon w-9 h-9 text-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                    <path d="M9 4v16"></path>
-                    <path d="M15 4v16"></path>
-                    <path d="M4 9h16"></path>
-                    <path d="M4 15h16"></path>
-                </svg>
+                <!-- 이미지가 없을 때 나타나는 백업 텍스트 로고 -->
+                <div id="fallback-logo" class="hidden items-center space-x-4">
+                    <span class="logo-text text-5xl md:text-6xl text-white tracking-tighter">Dnotitia</span>
+                </div>
             </div>
             
             <div class="inline-block px-5 py-1.5 text-xs font-extrabold tracking-widest text-orange-400 uppercase bg-orange-900/20 rounded-full border border-orange-500/30 mb-8">
@@ -133,94 +116,54 @@
             <p class="text-white text-2xl md:text-3xl font-bold opacity-90">디노티시아와 함께합시다</p>
         </header>
 
-        <!-- Recruitment Positions -->
+        <!-- 모집 직무 섹션 -->
         <section class="mb-24">
             <div class="flex items-center justify-center mb-16">
                 <h2 class="section-title text-3xl font-black tracking-tight text-white">모집 직무</h2>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- 01 System SW -->
                 <div class="job-category-card p-8 rounded-2xl">
                     <h3 class="text-orange font-black text-xl mb-6 flex items-center">
                         <span class="mr-3 opacity-50 text-sm font-normal">01</span> System SW
                     </h3>
                     <div class="space-y-4">
-                        <a href="https://dno.career.greetinghr.com/ko/o/198745" target="_blank" class="job-link">
-                            Device Driver Software Engineer
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/198793" target="_blank" class="job-link">
-                            Firmware Software Engineer
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/199727" target="_blank" class="job-link">
-                            Vector Library Engineer
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/198745" target="_blank" class="job-link">Device Driver Software Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/198793" target="_blank" class="job-link">Firmware Software Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/199727" target="_blank" class="job-link">Vector Library Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
                     </div>
                 </div>
 
-                <!-- 02 SoC -->
                 <div class="job-category-card p-8 rounded-2xl">
                     <h3 class="text-orange font-black text-xl mb-6 flex items-center">
                         <span class="mr-3 opacity-50 text-sm font-normal">02</span> SoC
                     </h3>
                     <div class="space-y-4">
-                        <a href="https://dno.career.greetinghr.com/ko/o/196737" target="_blank" class="job-link">
-                            Design Verification Engineer
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/196734" target="_blank" class="job-link">
-                            SoC / RTL Design Engineer
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/203021" target="_blank" class="job-link">
-                            SoC Firmware Engineer
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/196737" target="_blank" class="job-link">Design Verification Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/196734" target="_blank" class="job-link">SoC / RTL Design Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/203021" target="_blank" class="job-link">SoC Firmware Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
                     </div>
                 </div>
 
-                <!-- 03 Data -->
                 <div class="job-category-card p-8 rounded-2xl">
                     <h3 class="text-orange font-black text-xl mb-6 flex items-center">
                         <span class="mr-3 opacity-50 text-sm font-normal">03</span> Data
                     </h3>
                     <div class="space-y-4">
-                        <a href="https://dno.career.greetinghr.com/ko/o/200913" target="_blank" class="job-link">
-                            Vector Database Engineer
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/198903" target="_blank" class="job-link">
-                            Storage System Software Engineer
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/202104" target="_blank" class="job-link">
-                            Quality Assurance Engineer
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/200913" target="_blank" class="job-link">Vector Database Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/198903" target="_blank" class="job-link">Storage System Software Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/202104" target="_blank" class="job-link">Quality Assurance Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
                     </div>
                 </div>
 
-                <!-- 04 Core -->
                 <div class="job-category-card p-8 rounded-2xl">
                     <h3 class="text-orange font-black text-xl mb-6 flex items-center">
                         <span class="mr-3 opacity-50 text-sm font-normal">04</span> Core
                     </h3>
                     <div class="space-y-4">
-                        <a href="https://dno.career.greetinghr.com/ko/o/198531" target="_blank" class="job-link">
-                            Optimization Engineer
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/202141" target="_blank" class="job-link">
-                            DevOps Engineer
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/206229" target="_blank" class="job-link">
-                            System Architect
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/198531" target="_blank" class="job-link">Optimization Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/202141" target="_blank" class="job-link">DevOps Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/206229" target="_blank" class="job-link">System Architect <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
                     </div>
                 </div>
             </div>
@@ -236,28 +179,7 @@
             </div>
         </section>
 
-        <!-- Differentiation -->
-        <section class="mb-24">
-            <div class="flex items-center justify-center mb-16">
-                <h2 class="section-title text-3xl font-black tracking-tight text-white text-center">디노티시아는 이렇게 다릅니다</h2>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8 text-base">
-                <div class="p-8 bg-white/5 rounded-3xl border border-white/5 hover:bg-white/[0.08] transition-colors">
-                    <div class="text-4xl mb-6">🌱</div>
-                    <p class="leading-relaxed text-slate-200">가르쳐주는 사람도 없이 맨땅에 헤딩하도록 두지 않습니다. 경험과 실력이 뛰어난 <strong>선배들의 피드백</strong>을 받으며 성장할 수 있습니다.</p>
-                </div>
-                <div class="p-8 bg-white/5 rounded-3xl border border-white/5 hover:bg-white/[0.08] transition-colors">
-                    <div class="text-4xl mb-6">🎯</div>
-                    <p class="leading-relaxed text-slate-200">실체가 없는 유행을 따르지 않습니다. 소프트웨어와 하드웨어를 아우르는 통합 솔루션으로 <strong>장기기억 AI라는 명확한 목표</strong>를 향해 나아가고 있습니다.</p>
-                </div>
-                <div class="p-8 bg-white/5 rounded-3xl border border-white/5 hover:bg-white/[0.08] transition-colors">
-                    <div class="text-4xl mb-6">💎</div>
-                    <p class="leading-relaxed text-slate-200">국내와 해외에 경쟁자가 없습니다. <strong>자체적인 벡터 DB와 VDPU</strong>는 시장의 관심을 받고 있으며 지속적인 투자를 받고 있습니다.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA & Conditions -->
+        <!-- CTA & Footer -->
         <div class="grid md:grid-cols-2 gap-8 mb-24">
             <div class="p-10 border border-white/10 rounded-3xl bg-white/[0.01]">
                 <h3 class="text-xl font-bold mb-8 text-orange">근무 조건</h3>

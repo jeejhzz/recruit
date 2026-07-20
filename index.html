@@ -3,268 +3,564 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 주소창 위 탭에 표시되는 문구 -->
-    <title>디노티시아 채용</title>
-    
-    <!-- ✨ 브라우저 탭 아이콘을 깃허브의 logo.png 파일로 연결 -->
+    <title>디노티시아 채용 | Dnotitia Careers</title>
+
     <link rel="icon" href="logo.png" type="image/png">
 
-    <!-- Tailwind CSS 표준 로드 -->
+    <!-- Three.js (절제된 3D 배경용) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- 세련된 타이포그래피를 위한 폰트 로드 (Pretendard & JetBrains Mono) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --brand-navy: #001529;
-            --brand-orange: #FF6B00;
-            --brand-orange-light: #FF8533;
-            --kakao-yellow: #FEE500;
+            /* 완전히 어두운 다크 그레이/블랙 베이스로 변경 (AI 느낌 탈피) */
+            --bg-color: #050505;
+            --surface-color: #111111;
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --brand-orange: #FF5A00;
+            --brand-orange-hover: #E65100;
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
         }
+
         body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            background-color: var(--brand-navy);
-            color: #f8fafc;
+            font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            /* 부드러운 스크롤 */
+            scroll-behavior: smooth;
         }
-        .text-orange { color: var(--brand-orange); }
-        .bg-orange { background-color: var(--brand-orange); }
-        
-        /* 로고 타이포그래피 */
-        .logo-text {
-            font-family: 'Pretendard', sans-serif;
-            font-weight: 900;
-            letter-spacing: -0.06em;
-            display: block;
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
         }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
+
+        /* WebGL 배경 (반도체 회로 substrate 느낌) */
+        #webgl-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background-color: var(--bg-color);
+            /* 어두운 기판 위에 은은한 오렌지 발열/전류 글로우 */
+            background-image:
+                radial-gradient(circle at 78% 12%, rgba(255, 90, 0, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 20% 85%, rgba(60, 90, 120, 0.05) 0%, transparent 45%),
+                radial-gradient(circle at 50% 0%, #0c0a08 0%, #050505 65%);
+        }
+
+        /* UI 컴포넌트: 빛 번짐을 없애고 날카롭고 정교한 느낌으로 변경 */
+        .glass-nav {
+            background: rgba(5, 5, 5, 0.8);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--surface-border);
         }
-        .job-category-card {
-            background: rgba(255, 255, 255, 0.02);
-            border-left: 4px solid var(--brand-orange);
-            transition: all 0.3s ease;
+
+        .card-minimal {
+            background: var(--surface-color);
+            border: 1px solid var(--surface-border);
+            border-radius: 1rem;
+            transition: border-color 0.2s ease, transform 0.2s ease;
         }
-        .job-link {
+        .card-minimal:hover {
+            border-color: rgba(255, 90, 0, 0.3);
+            /* 통통 튀는 애니메이션 대신 아주 미세한 이동 */
+            transform: translateY(-2px);
+        }
+
+        /* 직무 링크 리스트 */
+        .job-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: rgba(255, 107, 0, 0.05);
-            border: 1px solid rgba(255, 107, 0, 0.15);
-            padding: 0.85rem 1.25rem;
-            border-radius: 0.75rem;
-            font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.2s ease;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--surface-border);
+            color: var(--text-main);
+            transition: color 0.2s ease;
+            text-decoration: none;
         }
-        .job-link:hover {
-            background: rgba(255, 107, 0, 0.2);
-            border-color: var(--brand-orange);
-            transform: translateX(6px);
-            color: white;
+        .job-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
         }
-        .section-title {
-            position: relative;
-            display: inline-block;
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--brand-orange), transparent);
-            border-radius: 2px;
-        }
-        .news-link {
+        .job-item:hover {
             color: var(--brand-orange);
-            font-weight: 700;
-            text-decoration: underline;
-            text-underline-offset: 4px;
-            text-decoration-color: rgba(255, 107, 0, 0.3);
+        }
+        .job-item .arrow-icon {
+            transition: transform 0.2s ease;
+        }
+        .job-item:hover .arrow-icon {
+            transform: translateX(4px) translateY(-4px);
+        }
+
+        /* 텍스트 하이라이트 (그라데이션 대신 심플한 컬러 포인트) */
+        .text-accent {
+            color: var(--brand-orange);
+        }
+
+        /* 미니멀한 버튼 스타일 */
+        .btn-primary {
+            background-color: var(--brand-orange);
+            color: #ffffff;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+            border: 1px solid transparent;
+        }
+        .btn-primary:hover {
+            background-color: var(--brand-orange-hover);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--surface-border);
+            font-weight: 500;
             transition: all 0.2s ease;
         }
-        .news-link:hover {
-            text-decoration-color: var(--brand-orange);
-            background: rgba(255, 107, 0, 0.1);
-            border-radius: 4px;
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
         }
-        /* Video Container for 16:9 ratio */
-        .video-container {
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            border: 1px solid var(--surface-border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+        }
+
+        /* 유튜브 영상 컨테이너 */
+        .video-wrapper {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
+            border-radius: 0.75rem;
             overflow: hidden;
-            border-radius: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--surface-border);
             background: #000;
         }
-        .video-container iframe {
+        .video-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
         }
-        /* Badge Modules */
-        .badge-module {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.375rem 1.25rem;
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            border-radius: 9999px;
-            transition: all 0.2s ease;
-        }
+
+        /* 스크롤바 커스터마이징 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-color); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
     </style>
 </head>
-<body class="selection:bg-orange-500/30">
+<body class="selection:bg-orange-500/30 selection:text-white antialiased">
 
-    <div class="max-w-4xl mx-auto px-6 py-12 md:py-24">
-        
-        <!-- Header Section -->
-        <header class="text-center mb-24">
-            <div class="mb-10">
-                <span class="logo-text text-6xl md:text-7xl text-white">Dnotitia</span>
+    <div id="webgl-container"></div>
+
+    <nav class="glass-nav fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all">
+        <div class="font-bold text-xl tracking-tight text-white flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+            <!-- 심플한 닷 로고 포인트 -->
+            <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+            Dnotitia
+        </div>
+        <a href="https://forms.gle/yBkLR8Vp8tf61Lh46" target="_blank" class="btn-primary px-5 py-2 rounded-md text-sm flex items-center gap-2">
+            커피챗 신청
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+        </a>
+    </nav>
+
+    <a href="https://open.kakao.com/o/sw3Shdqi" target="_blank" class="fixed bottom-8 right-8 z-50 bg-[#FEE500] text-[#000000] w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-105 transition-transform duration-200 group">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 3.134-9 7 0 2.39 1.55 4.496 3.94 5.75-.145.54-.52 1.94-.596 2.22-.09.333.11.328.232.247.095-.064 1.514-.94 2.115-1.32.417.1.848.153 1.309.153 4.97 0 9-3.134 9-7s-4.03-7-9-7z"/></svg>
+        <span class="absolute right-14 bg-[#222] text-white text-xs px-3 py-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none border border-white/10">
+            채용 담당자 문의
+        </span>
+    </a>
+
+    <main class="relative z-10 max-w-5xl mx-auto px-6 pt-32 pb-24 md:pt-48 md:pb-32">
+
+        <header class="mb-32">
+            <!-- 소셜 프루프 뱃지 (미니멀) -->
+            <div class="flex flex-wrap items-center gap-3 mb-8">
+                <span class="badge border-orange-500/30 text-orange-400">
+                    <span class="mr-2">Series A</span> 900억 원 투자 유치
+                </span>
+                <span class="badge">
+                    CB Insights 'Global AI 100' 선정
+                </span>
             </div>
-            
-            <!-- 인증 및 투자 정보 모듈 -->
-            <div class="flex flex-wrap justify-center gap-3 mb-8">
-                <a href="https://it.donga.com/107569/" target="_blank" class="badge-module text-orange-400 bg-orange-900/20 border border-orange-500/30 hover:bg-orange-500/10">
-                    CB Insights 'Global AI Agent 유망 기업' 선정
-                </a>
-                <a href="https://zdnet.co.kr/view/?no=20260421140808" target="_blank" class="badge-module text-white bg-orange border border-orange-500/50 hover:brightness-110 shadow-lg shadow-orange-600/20">
-                    900억 원 규모 Series A 투자 유치
-                </a>
-            </div>
-            
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
-                <span class="text-orange">장기기억 AI</span>를 향한 위대한 여정
+
+            <!-- 그라데이션을 뺀 솔리드 텍스트, 자간 조절로 세련미 극대화 -->
+            <h1 class="text-5xl md:text-7xl font-semibold tracking-tighter mb-6 leading-[1.1] text-white">
+                <span class="text-accent">장기기억 AI</span>를 향한<br>
+                위대한 여정.
             </h1>
-            <p class="text-white text-2xl md:text-3xl font-bold opacity-90">디노티시아와 함께합시다</p>
+
+            <p class="text-gray-400 text-lg md:text-xl font-medium tracking-tight max-w-2xl mb-10 leading-relaxed">
+                세계 최초 VDPU 개발부터 독자적인 LLM 파운데이션 모델까지.<br>
+                데이터의 한계를 넘어서는 혁신에 함께할 최고 수준의 엔지니어를 모십니다.
+            </p>
+
+            <div class="flex gap-4">
+                <a href="#positions" class="btn-primary px-6 py-3 rounded-md text-base">채용 포지션 보기</a>
+                <a href="https://forms.gle/yBkLR8Vp8tf61Lh46" target="_blank" class="btn-secondary px-6 py-3 rounded-md text-base">가벼운 커피챗 신청</a>
+            </div>
         </header>
 
-        <!-- Recruitment Positions -->
-        <section class="mb-24">
-            <div class="flex items-center justify-center mb-16">
-                <h2 class="section-title text-3xl font-black tracking-tight text-white">모집 직무</h2>
+        <section id="positions" class="mb-32 scroll-mt-24">
+            <div class="flex items-end justify-between border-b border-white/10 pb-4 mb-10">
+                <h2 class="text-2xl font-semibold tracking-tight text-white">Open Positions</h2>
+                <span class="font-mono text-sm text-gray-500">2026 Recruitment</span>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="job-category-card p-8 rounded-2xl">
-                    <h3 class="text-orange font-black text-xl mb-6 flex items-center">
-                        <span class="mr-3 opacity-50 text-sm font-normal">01</span> System SW
-                    </h3>
-                    <div class="space-y-4">
-                        <a href="https://dno.career.greetinghr.com/ko/o/198745" target="_blank" class="job-link">Device Driver Software Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/198793" target="_blank" class="job-link">Firmware Software Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/199727" target="_blank" class="job-link">Vector Library Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- 01 System SW -->
+                <div class="card-minimal p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="font-mono text-accent text-sm">01</span>
+                        <h3 class="text-lg font-semibold text-white">System SW</h3>
+                    </div>
+                    <div class="flex flex-col">
+                        <a href="https://dno.career.greetinghr.com/ko/o/198745" target="_blank" class="job-item group">
+                            <span class="font-medium">Device Driver Software Engineer</span>
+                            <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/198793" target="_blank" class="job-item group">
+                            <span class="font-medium">Firmware Software Engineer</span>
+                            <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/199727" target="_blank" class="job-item group">
+                            <span class="font-medium">Vector Library Engineer</span>
+                            <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
                     </div>
                 </div>
 
-                <div class="job-category-card p-8 rounded-2xl">
-                    <h3 class="text-orange font-black text-xl mb-6 flex items-center">
-                        <span class="mr-3 opacity-50 text-sm font-normal">02</span> SoC
-                    </h3>
-                    <div class="space-y-4">
-                        <a href="https://dno.career.greetinghr.com/ko/o/196737" target="_blank" class="job-link">Design Verification Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/196734" target="_blank" class="job-link">SoC / RTL Design Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/203021" target="_blank" class="job-link">SoC Firmware Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                <!-- 02 SoC -->
+                <div class="card-minimal p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="font-mono text-accent text-sm">02</span>
+                        <h3 class="text-lg font-semibold text-white">SoC</h3>
+                    </div>
+                    <div class="flex flex-col">
+                        <a href="https://dno.career.greetinghr.com/ko/o/196737" target="_blank" class="job-item group">
+                            <span class="font-medium">Design Verification Engineer</span>
+                            <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/196734" target="_blank" class="job-item group">
+                            <span class="font-medium">SoC / RTL Design Engineer</span>
+                            <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/203021" target="_blank" class="job-item group">
+                            <span class="font-medium">SoC Firmware Engineer</span>
+                            <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
                     </div>
                 </div>
 
-                <div class="job-category-card p-8 rounded-2xl">
-                    <h3 class="text-orange font-black text-xl mb-6 flex items-center">
-                        <span class="mr-3 opacity-50 text-sm font-normal">03</span> Data
-                    </h3>
-                    <div class="space-y-4">
-                        <a href="https://dno.career.greetinghr.com/ko/o/200913" target="_blank" class="job-link">Vector Database Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/198903" target="_blank" class="job-link">Storage System Software Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
-                        <a href="https://dno.career.greetinghr.com/ko/o/202104" target="_blank" class="job-link">Quality Assurance Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                <!-- 03 Data -->
+                <div class="card-minimal p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="font-mono text-accent text-sm">03</span>
+                        <h3 class="text-lg font-semibold text-white">Data</h3>
+                    </div>
+                    <div class="flex flex-col">
+                        <a href="https://dno.career.greetinghr.com/ko/o/200913" target="_blank" class="job-item group">
+                            <span class="font-medium">Vector Database Engineer</span>
+                            <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/198903" target="_blank" class="job-item group">
+                            <span class="font-medium">Storage System SW Engineer</span>
+                            <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/202104" target="_blank" class="job-item group">
+                            <span class="font-medium">Quality Assurance Engineer</span>
+                            <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
                     </div>
                 </div>
 
-                <div class="job-category-card p-8 rounded-2xl">
-                    <h3 class="text-orange font-black text-xl mb-6 flex items-center">
-                        <span class="mr-3 opacity-50 text-sm font-normal">04</span> Core
-                    </h3>
-                    <div class="space-y-4">
-                        <a href="https://dno.career.greetinghr.com/ko/o/198531" target="_blank" class="job-link">Optimization Engineer <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
-                        <div class="flex items-center justify-between bg-white/5 border border-white/10 p-[0.85rem] px-[1.25rem] rounded-[0.75rem] opacity-40 cursor-not-allowed">
-                            <span class="text-[0.9rem] font-semibold text-slate-400">DevOps Engineer (마감)</span>
-                            <span class="text-[10px] font-black px-2 py-0.5 bg-slate-800 text-slate-500 rounded-md border border-slate-700">CLOSED</span>
+                <!-- 04 Core -->
+                <div class="card-minimal p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <span class="font-mono text-accent text-sm">04</span>
+                        <h3 class="text-lg font-semibold text-white">Core</h3>
+                    </div>
+                    <div class="flex flex-col">
+                        <a href="https://dno.career.greetinghr.com/ko/o/198531" target="_blank" class="job-item group">
+                            <span class="font-medium">Optimization Engineer</span>
+                            <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                        <div class="job-item opacity-40 cursor-not-allowed">
+                            <span class="font-medium text-gray-500">DevOps Engineer</span>
+                            <span class="text-xs font-mono px-2 py-1 bg-[#1a1a1a] rounded border border-white/5">CLOSED</span>
                         </div>
-                        <a href="https://dno.career.greetinghr.com/ko/o/206229" target="_blank" class="job-link">System Architect <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></a>
+                        <a href="https://dno.career.greetinghr.com/ko/o/206229" target="_blank" class="job-item group">
+                            <span class="font-medium">System Architect</span>
+                            <svg class="w-4 h-4 arrow-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Dnotitia Section (With Videos Inside) -->
-        <section class="glass-card rounded-3xl p-10 md:p-14 mb-24">
-            <h2 class="text-3xl font-bold mb-8 italic text-orange border-b border-white/10 pb-4">About Dnotitia</h2>
-            <div class="text-slate-300 leading-relaxed space-y-6 text-lg mb-12">
-                <p>디노티시아는 AI와 데이터 시스템의 융합을 통해 혁신적인 가치를 창출하는 <a href="https://www.koit.co.kr/news/articleView.html?idxno=205883" target="_blank" class="news-link">장기기억 인공지능 전문기업</a>으로, CB Insights의 <a href="https://zdnet.co.kr/view/?no=20250425111526" target="_blank" class="news-link">‘2025 글로벌 AI 100’</a>에 선정되며 기술력을 인정받았습니다.</p>
-                <p>디노티시아는 세계 최초로 개발한 벡터 데이터 연산 가속기 <a href="https://www.epnc.co.kr/news/articleView.html?idxno=328142" target="_blank" class="news-link">'VDPU'</a>를 기반으로 고성능 벡터 데이터베이스 <a href="https://www.etnews.com/20260324000436" target="_blank" class="news-link">‘SEAHORSE(씨홀스)’</a>를 선보이고 있으며, 이를 통해 생성형 인공지능의 핵심 기술인 RAG 솔루션을 구현하고 있습니다.</p>
-                <p>또한 독자적으로 개발한 LLM 파운데이션 모델 <a href="https://www.digitaltoday.co.kr/news/articleView.html?idxno=580007" target="_blank" class="news-link">'DNA'</a>를 활용한 엣지 디바이스 <a href="http://www.itdaily.kr/news/articleView.html?idxno=237265" target="_blank" class="news-link">‘MNEMOS(니모스)’</a>를 통해 개인화된 AI 경험을 제공하고 있습니다.</p>
-            </div>
-
-            <!-- YouTube Video Grid Inside About Section -->
-            <div class="grid md:grid-cols-2 gap-8 border-t border-white/10 pt-10">
-                <!-- Video 1 -->
-                <div class="space-y-3">
-                    <div class="video-container shadow-2xl shadow-orange-600/10 hover:border-orange/50 transition-all">
-                        <iframe src="https://www.youtube.com/embed/_V_CGUpwKJ8?rel=0" title="Dnotitia Vision Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <section class="mb-32">
+            <div class="border-t border-white/10 pt-16">
+                <div class="flex flex-col md:flex-row gap-12 mb-16">
+                    <div class="md:w-1/3">
+                        <h2 class="text-2xl font-semibold text-white tracking-tight mb-4">About Dnotitia</h2>
+                        <p class="text-gray-400 text-sm">디노티시아가 그려가는 AI 데이터 시스템의 미래</p>
                     </div>
-                    <p class="text-slate-400 text-sm font-bold pl-2 border-l-2 border-orange">디노티시아가 여는 새로운 AI 시대</p>
-                </div>
-                <!-- Video 2 -->
-                <div class="space-y-3">
-                    <div class="video-container shadow-2xl shadow-orange-600/10 hover:border-orange/50 transition-all">
-                        <iframe src="https://www.youtube.com/embed/xPEdPYyrbwk?rel=0" title="Dnotitia Technology Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="md:w-2/3 text-gray-300 space-y-6 leading-relaxed font-medium">
+                        <p>디노티시아는 AI와 데이터 시스템의 융합을 통해 혁신적인 가치를 창출하는 장기기억 인공지능 전문기업으로, CB Insights의 ‘2025 글로벌 AI 100’에 선정되며 독보적인 기술력을 세계적으로 인정받았습니다.</p>
+                        <p>세계 최초로 개발한 벡터 데이터 연산 가속기 <span class="text-white font-semibold">'VDPU'</span>를 기반으로 고성능 벡터 데이터베이스 <span class="text-white font-semibold">‘SEAHORSE(씨홀스)’</span>를 선보이고 있으며, 생성형 AI의 핵심인 RAG 솔루션을 선도합니다.</p>
+                        <p>또한 독자 개발한 LLM 파운데이션 모델 <span class="text-white font-semibold">'DNA'</span>를 활용한 엣지 디바이스 <span class="text-white font-semibold">‘MNEMOS(니모스)’</span>를 통해 개인화된 AI 경험의 패러다임을 바꿉니다.</p>
                     </div>
-                    <p class="text-slate-400 text-sm font-bold pl-2 border-l-2 border-orange">장기기억 AI 기술의 혁신과 비전</p>
                 </div>
-            </div>
-        </section>
 
-        <!-- CTA Section -->
-        <div class="grid md:grid-cols-2 gap-8 mb-24">
-            <div class="p-10 border border-white/10 rounded-3xl bg-white/[0.01]">
-                <h3 class="text-xl font-bold mb-8 text-orange">근무 조건</h3>
-                <div class="space-y-6 text-lg">
-                    <div class="border-b border-white/5 pb-4">
-                        <p class="text-slate-500 text-sm block mb-1">근무 형태</p>
-                        <p class="font-bold">정규직 / 인턴 (3개월 후 전환 가능)</p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="video-wrapper mb-4 group">
+                            <iframe src="https://www.youtube.com/embed/_V_CGUpwKJ8?rel=0" title="Dnotitia Vision Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-sm font-medium text-gray-400">디노티시아가 여는 새로운 AI 시대</p>
                     </div>
                     <div>
-                        <p class="text-slate-500 text-sm block mb-1">근무지</p>
-                        <p class="font-bold">서울시 강남구 (유연근무 & 재택근무 가능)</p>
+                        <div class="video-wrapper mb-4 group">
+                            <iframe src="https://www.youtube.com/embed/xPEdPYyrbwk?rel=0" title="Dnotitia Technology Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <p class="text-sm font-medium text-gray-400">장기기억 AI 기술의 혁신과 비전</p>
                     </div>
                 </div>
             </div>
-            <div class="glass-card rounded-3xl p-10 flex flex-col justify-center text-center">
-                <p class="text-xl font-bold mb-8">디노티시아 채용이 궁금하신가요?</p>
-                <div class="flex flex-col gap-4">
-                    <a href="https://forms.gle/yBkLR8Vp8tf61Lh46" target="_blank" class="bg-orange px-8 py-4 rounded-2xl font-bold text-center text-white shadow-xl shadow-orange-600/30 hover:brightness-110 transition-all text-lg">커피챗 신청하기</a>
-                    <a href="https://open.kakao.com/o/sw3Shdqi" target="_blank" class="btn-kakao px-8 py-4 rounded-2xl font-bold shadow-lg transition-all flex items-center justify-center text-lg bg-[#FEE500] text-[#371d1e]">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 3.134-9 7 0 2.39 1.55 4.496 3.94 5.75-.145.54-.52 1.94-.596 2.22-.09.333.11.328.232.247.095-.064 1.514-.94 2.115-1.32.417.1.848.153 1.309.153 4.97 0 9-3.134 9-7s-4.03-7-9-7z"/></svg> 카카오톡 실시간 상담
-                    </a>
-                </div>
-            </div>
-        </div>
+        </section>
 
-        <footer class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-slate-400 gap-6">
-            <div class="flex items-center">
-                <span class="bg-orange/10 text-orange font-bold px-3 py-1 rounded-md mr-4">문의</span>
-                <a href="mailto:journey.z@dnotitia.com" class="hover:text-white transition-colors border-b border-white/10">journey.z@dnotitia.com</a>
+        <section class="card-minimal p-8 md:p-12 mb-16 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+            <div>
+                <h3 class="text-xl font-semibold text-white mb-2">근무 환경</h3>
+                <ul class="text-gray-400 space-y-2 text-sm md:text-base">
+                    <li><span class="inline-block w-20 text-gray-500">근무 형태</span> 정규직 및 인턴 (3개월 후 전환 심사)</li>
+                    <li><span class="inline-block w-20 text-gray-500">근무 지역</span> 서울특별시 강남구</li>
+                    <li><span class="inline-block w-20 text-gray-500">업무 환경</span> 유연근무제 및 재택근무 적극 지원</li>
+                </ul>
             </div>
-            <p class="opacity-60 text-xs">© 2025 Dnotitia Inc. All rights reserved.</p>
+
+            <div class="flex flex-col sm:flex-row w-full md:w-auto gap-3">
+                <a href="https://open.kakao.com/o/sw3Shdqi" target="_blank" class="px-6 py-3 rounded-md text-sm font-semibold bg-[#371d1e] text-[#FEE500] hover:bg-[#2c1718] transition-colors border border-[#FEE500]/20 flex items-center justify-center gap-2 text-center">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 3.134-9 7 0 2.39 1.55 4.496 3.94 5.75-.145.54-.52 1.94-.596 2.22-.09.333.11.328.232.247.095-.064 1.514-.94 2.115-1.32.417.1.848.153 1.309.153 4.97 0 9-3.134 9-7s-4.03-7-9-7z"/></svg>
+                    채용 담당자 문의
+                </a>
+                <a href="https://forms.gle/yBkLR8Vp8tf61Lh46" target="_blank" class="btn-primary px-8 py-3 rounded-md text-sm font-semibold text-center">
+                    가벼운 커피챗 신청
+                </a>
+            </div>
+        </section>
+
+        <!-- 푸터 -->
+        <footer class="flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 border-t border-white/5 pt-8">
+            <p>© 2026 Dnotitia Inc. All rights reserved.</p>
+            <a href="mailto:journey.z@dnotitia.com" class="hover:text-gray-300 transition-colors mt-2 md:mt-0">journey.z@dnotitia.com</a>
         </footer>
-    </div>
 
+    </main>
+
+    <script>
+        window.onload = function() {
+            const container = document.getElementById('webgl-container');
+
+            // ── Scene ──────────────────────────────────────────────
+            const scene = new THREE.Scene();
+            // 안개로 깊이감: 멀리 있는 회로층은 substrate 속으로 자연스럽게 사라짐
+            scene.fog = new THREE.FogExp2(0x050505, 0.0016);
+
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+            camera.position.set(0, 0, 340);
+            camera.lookAt(0, 0, 0);
+
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.appendChild(renderer.domElement);
+
+            // 회로 전체를 담는 그룹 (마우스 패럴랙스에 함께 반응)
+            const circuit = new THREE.Group();
+            scene.add(circuit);
+
+            // ── 회로 트레이스 생성 ──────────────────────────────────
+            // 격자 위를 직각(Manhattan)으로 배선한 트레이스 + 교차점 비아(via).
+            // 깊이가 다른 여러 레이어로 쌓아 반도체 기판 substrate 느낌을 낸다.
+            const GRID = 42;              // 격자 간격
+            const COLS = 24;             // 가로 격자 수
+            const ROWS = 15;             // 세로 격자 수
+            const halfW = (COLS * GRID) / 2;
+            const halfH = (ROWS * GRID) / 2;
+
+            const LAYERS = [
+                { z: -160, lineOpacity: 0.08, viaOpacity: 0.14, traces: 12 },
+                { z:  -70, lineOpacity: 0.14, viaOpacity: 0.22, traces: 14 },
+                { z:   30, lineOpacity: 0.22, viaOpacity: 0.34, traces: 15 }
+            ];
+
+            const allTraces = []; // 데이터 펄스가 흐를 경로 모음 (모든 레이어 공통)
+
+            LAYERS.forEach((layer) => {
+                const linePositions = [];
+                const viaPositions = [];
+
+                const toWorld = (gx, gy) => new THREE.Vector3(
+                    gx * GRID - halfW,
+                    gy * GRID - halfH,
+                    layer.z
+                );
+
+                for (let t = 0; t < layer.traces; t++) {
+                    // 격자 위 랜덤 시작점에서 직각으로 꺾이며 배선
+                    let cx = Math.floor(Math.random() * COLS);
+                    let cy = Math.floor(Math.random() * ROWS);
+                    const steps = 5 + Math.floor(Math.random() * 6);
+                    const pts = [toWorld(cx, cy)];
+                    let horizontal = Math.random() > 0.5;
+
+                    for (let s = 0; s < steps; s++) {
+                        const run = 1 + Math.floor(Math.random() * 3); // 한 번에 1~3칸
+                        if (horizontal) {
+                            cx += (Math.random() > 0.5 ? 1 : -1) * run;
+                            cx = Math.max(0, Math.min(COLS, cx));
+                        } else {
+                            cy += (Math.random() > 0.5 ? 1 : -1) * run;
+                            cy = Math.max(0, Math.min(ROWS, cy));
+                        }
+                        const p = toWorld(cx, cy);
+                        // 경계에 막혀 길이가 0인 구간은 건너뛴다
+                        if (!p.equals(pts[pts.length - 1])) pts.push(p);
+                        horizontal = !horizontal; // 실제 PCB처럼 축을 번갈아 꺾음
+                    }
+
+                    if (pts.length < 2) continue;
+
+                    for (let i = 0; i < pts.length - 1; i++) {
+                        linePositions.push(pts[i].x, pts[i].y, pts[i].z, pts[i + 1].x, pts[i + 1].y, pts[i + 1].z);
+                    }
+                    pts.forEach((p) => viaPositions.push(p.x, p.y, p.z));
+
+                    allTraces.push({ points: pts });
+                }
+
+                // 트레이스 라인 (은은한 블루-그레이 금속 배선)
+                const lineGeo = new THREE.BufferGeometry();
+                lineGeo.setAttribute('position', new THREE.Float32BufferAttribute(linePositions, 3));
+                circuit.add(new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({
+                    color: 0x3d4b5c,
+                    transparent: true,
+                    opacity: layer.lineOpacity
+                })));
+
+                // 교차점 비아/패드
+                const viaGeo = new THREE.BufferGeometry();
+                viaGeo.setAttribute('position', new THREE.Float32BufferAttribute(viaPositions, 3));
+                circuit.add(new THREE.Points(viaGeo, new THREE.PointsMaterial({
+                    color: 0x5a6b7d,
+                    size: 2.6,
+                    transparent: true,
+                    opacity: layer.viaOpacity,
+                    sizeAttenuation: true
+                })));
+            });
+
+            // ── 데이터 펄스 ────────────────────────────────────────
+            // 오렌지 포인트가 회로 트레이스를 따라 흐르며 "데이터 전송"을 표현.
+            const PULSE_COUNT = 70;
+            const pulses = [];
+            for (let i = 0; i < PULSE_COUNT; i++) {
+                const trace = allTraces[Math.floor(Math.random() * allTraces.length)];
+                pulses.push({
+                    trace,
+                    seg: Math.floor(Math.random() * (trace.points.length - 1)),
+                    t: Math.random(),
+                    speed: 0.006 + Math.random() * 0.012
+                });
+            }
+
+            const pulseGeo = new THREE.BufferGeometry();
+            const pulsePos = new Float32Array(PULSE_COUNT * 3);
+            pulseGeo.setAttribute('position', new THREE.BufferAttribute(pulsePos, 3));
+            const pulses3D = new THREE.Points(pulseGeo, new THREE.PointsMaterial({
+                color: 0xFF5A00,
+                size: 5,
+                transparent: true,
+                opacity: 0.9,
+                blending: THREE.AdditiveBlending, // 전류가 빛나듯 겹치면 밝아짐
+                depthWrite: false
+            }));
+            circuit.add(pulses3D);
+
+            function updatePulses() {
+                const arr = pulseGeo.attributes.position.array;
+                for (let i = 0; i < PULSE_COUNT; i++) {
+                    const p = pulses[i];
+                    p.t += p.speed;
+                    while (p.t >= 1) {
+                        p.t -= 1;
+                        p.seg++;
+                        // 트레이스 끝에 도달하면 다른 트레이스로 점프
+                        if (p.seg >= p.trace.points.length - 1) {
+                            p.trace = allTraces[Math.floor(Math.random() * allTraces.length)];
+                            p.seg = 0;
+                        }
+                    }
+                    const a = p.trace.points[p.seg];
+                    const b = p.trace.points[p.seg + 1];
+                    arr[i * 3]     = a.x + (b.x - a.x) * p.t;
+                    arr[i * 3 + 1] = a.y + (b.y - a.y) * p.t;
+                    arr[i * 3 + 2] = a.z + (b.z - a.z) * p.t;
+                }
+                pulseGeo.attributes.position.needsUpdate = true;
+            }
+
+            // ── 인터랙션 (미세한 패럴랙스) ─────────────────────────
+            let targetX = 0, targetY = 0;
+            document.addEventListener('mousemove', (e) => {
+                targetX = (e.clientX / window.innerWidth - 0.5);
+                targetY = (e.clientY / window.innerHeight - 0.5);
+            });
+
+            // ── 렌더 루프 ──────────────────────────────────────────
+            function animate() {
+                requestAnimationFrame(animate);
+                updatePulses();
+
+                // 마우스를 따라 기판이 살짝 기울어지며 깊이감을 준다
+                circuit.rotation.y += (targetX * 0.28 - circuit.rotation.y) * 0.03;
+                circuit.rotation.x += (-targetY * 0.18 - circuit.rotation.x) * 0.03;
+                // 아주 느린 좌우 드리프트
+                circuit.position.x = Math.sin(Date.now() * 0.00006) * 14;
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            // ── 리사이즈 대응 ──────────────────────────────────────
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        };
+    </script>
 </body>
 </html>

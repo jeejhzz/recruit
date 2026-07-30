@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>디노티시아 R&D 집중 채용</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --navy: #001529;
+        --navy-deep: #000d18;
+        --orange: #FF6B00;
+        --orange-soft: #ff9c4d;
+        --line: rgba(255, 255, 255, 0.09);
+        --muted: #93a3b8;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        background: var(--navy-deep);
+        color: #fff;
+        font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        padding: 2.5rem 1.25rem;
+        display: flex;
+        justify-content: center;
+    }
+    .poster {
+        width: 100%;
+        max-width: 900px;
+        background:
+            radial-gradient(circle at 88% 4%, rgba(255, 107, 0, 0.13), transparent 42%),
+            linear-gradient(180deg, #011c33 0%, var(--navy) 34%, #00101f 100%);
+        border: 1px solid var(--line);
+        border-radius: 1.5rem;
+        overflow: hidden;
+    }
+    .pad { padding: 3rem 3.25rem; }
+    .rule { height: 1px; background: var(--line); }
+
+    /* ---------- masthead ---------- */
+    .mast { position: relative; padding-bottom: 2.25rem; }
+    .mast-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 2.75rem; }
+    .logo { display: flex; align-items: center; gap: 0.6rem; }
+    .logo img:first-child { height: 3.1rem; width: auto; }
+    .logo img:last-child { height: 1.75rem; width: auto; }
+    .kicker {
+        flex: 0 0 auto;
+        border: 1px solid rgba(255, 107, 0, 0.4);
+        background: rgba(255, 107, 0, 0.1);
+        color: var(--orange-soft);
+        border-radius: 9999px;
+        padding: 0.42rem 0.95rem;
+        font-size: 0.76rem; font-weight: 800; letter-spacing: 0.1em;
+    }
+    .mast-grid { display: grid; grid-template-columns: 1fr 15.5rem; gap: 1.5rem; align-items: center; }
+    h1 {
+        font-size: 3rem; font-weight: 800; line-height: 1.16;
+        letter-spacing: -0.04em; word-break: keep-all;
+    }
+    h1 em { color: var(--orange); font-style: normal; }
+    .tagline {
+        margin-top: 1.1rem;
+        font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+        font-style: italic; font-weight: 400;
+        font-size: 1.32rem; color: #c6d2e0; letter-spacing: 0.015em;
+    }
+    .chip-wrap { position: relative; display: grid; place-items: center; }
+    .chip-glow {
+        position: absolute; width: 92%; aspect-ratio: 1; border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 107, 0, 0.26), transparent 62%);
+        filter: blur(22px);
+    }
+    .chip-wrap img {
+        position: relative; width: 100%; aspect-ratio: 1 / 1.02;
+        object-fit: cover; object-position: 50% 46%;
+        -webkit-mask-image: radial-gradient(66% 82% at 50% 48%, #000 52%, transparent 79%);
+        mask-image: radial-gradient(66% 82% at 50% 48%, #000 52%, transparent 79%);
+        filter: drop-shadow(0 22px 40px rgba(0, 0, 0, 0.55));
+    }
+    .badges { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 2.1rem; }
+    .badge {
+        border-radius: 9999px; padding: 0.46rem 0.95rem;
+        font-size: 0.8rem; font-weight: 700; letter-spacing: -0.01em;
+    }
+    .badge--line { border: 1px solid rgba(255, 107, 0, 0.32); background: rgba(255, 107, 0, 0.08); color: var(--orange-soft); }
+    .badge--fill { background: var(--orange); color: #fff; }
+
+    /* ---------- section furniture ---------- */
+    .eyebrow {
+        display: inline-flex; align-items: center; gap: 0.65rem;
+        font-size: 0.72rem; font-weight: 800; letter-spacing: 0.22em;
+        text-transform: uppercase; color: var(--orange-soft);
+    }
+    .eyebrow::before { content: ''; width: 1.6rem; height: 1px; background: linear-gradient(90deg, var(--orange), transparent); }
+    h2 {
+        margin-top: 0.95rem; font-size: 1.85rem; font-weight: 800;
+        letter-spacing: -0.035em; word-break: keep-all;
+    }
+    .lead { margin-top: 1.35rem; color: #cbd7e4; font-size: 1.04rem; line-height: 1.85; word-break: keep-all; }
+    .lead + .lead { margin-top: 0.9rem; }
+    .lead b { color: var(--orange-soft); font-weight: 700; }
+
+    /* ---------- product trio ---------- */
+    .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; margin-top: 2.1rem; }
+    .trio div {
+        border: 1px solid var(--line); border-radius: 0.9rem;
+        background: rgba(255, 255, 255, 0.03); padding: 1.25rem 1.15rem;
+    }
+    .trio dt { color: #fff; font-size: 1.02rem; font-weight: 800; letter-spacing: -0.01em; }
+    .trio dd { margin-top: 0.4rem; color: var(--muted); font-size: 0.85rem; line-height: 1.6; word-break: keep-all; }
+
+    /* ---------- jobs ---------- */
+    .group { margin-top: 2.25rem; }
+    .group-head { display: flex; align-items: baseline; gap: 0.6rem; margin-bottom: 0.9rem; }
+    .group-name { font-size: 1.02rem; font-weight: 800; color: #fff; letter-spacing: -0.01em; }
+    .group-count { font-size: 0.78rem; font-weight: 700; color: var(--orange-soft); }
+    .group-line { flex: 1; height: 1px; background: var(--line); }
+    .jobs { display: grid; gap: 0.6rem; }
+    .job {
+        display: flex; align-items: center; gap: 1rem;
+        border: 1px solid var(--line); border-radius: 0.85rem;
+        background: rgba(255, 255, 255, 0.025);
+        padding: 1rem 1.25rem;
+        text-decoration: none; color: inherit;
+        transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+    }
+    .job:hover { border-color: rgba(255, 107, 0, 0.4); background: rgba(255, 107, 0, 0.06); transform: translateX(3px); }
+    .job-text { flex: 1; min-width: 0; }
+    .job-title { display: block; font-size: 1.04rem; font-weight: 800; letter-spacing: -0.015em; }
+    .job-desc { display: block; margin-top: 0.3rem; color: var(--muted); font-size: 0.88rem; line-height: 1.5; word-break: keep-all; }
+    .job-go { flex: 0 0 auto; color: var(--orange); font-size: 0.82rem; font-weight: 800; opacity: 0.75; }
+
+    /* ---------- facts + process ---------- */
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .box { border: 1px solid var(--line); border-radius: 1rem; background: rgba(255, 255, 255, 0.025); padding: 1.6rem 1.5rem; }
+    .box h3 { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--orange-soft); margin-bottom: 1.15rem; }
+    .fact + .fact { margin-top: 0.95rem; padding-top: 0.95rem; border-top: 1px solid rgba(255, 255, 255, 0.07); }
+    .fact dt { color: var(--muted); font-size: 0.76rem; font-weight: 700; letter-spacing: 0.05em; }
+    .fact dd { margin-top: 0.28rem; color: #fff; font-size: 0.96rem; font-weight: 700; word-break: keep-all; }
+    .steps { display: grid; gap: 0.55rem; counter-reset: s; }
+    .steps li { list-style: none; display: flex; align-items: center; gap: 0.7rem; color: #dbe4ee; font-size: 0.93rem; font-weight: 600; word-break: keep-all; }
+    .steps li::before {
+        counter-increment: s; content: counter(s);
+        flex: 0 0 auto; width: 1.45rem; height: 1.45rem; border-radius: 9999px;
+        display: grid; place-items: center;
+        background: rgba(255, 255, 255, 0.07); border: 1px solid var(--line);
+        font-size: 0.72rem; font-weight: 800; color: #fff;
+    }
+    .steps li:last-child::before { background: var(--orange); border-color: transparent; color: var(--navy); }
+
+    /* ---------- close ---------- */
+    .close { background: linear-gradient(180deg, transparent, rgba(255, 107, 0, 0.05)); }
+    .close h2 { font-size: 2rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 1.9rem; }
+    .btn {
+        display: inline-flex; align-items: center; gap: 0.45rem;
+        padding: 0.95rem 1.7rem; border-radius: 9999px;
+        font-size: 1rem; font-weight: 800; letter-spacing: -0.01em;
+        text-decoration: none; transition: filter 0.2s ease, transform 0.2s ease, background 0.2s ease;
+    }
+    .btn:hover { filter: brightness(1.07); transform: translateY(-2px); }
+    .btn--primary { background: var(--orange); color: #fff; box-shadow: 0 14px 32px rgba(255, 107, 0, 0.28); }
+    .btn--ghost { border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.03); color: #e2e8f0; }
+    .btn--ghost span { opacity: 0.45; }
+    .contact { margin-top: 2rem; padding-top: 1.6rem; border-top: 1px solid var(--line);
+               display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.9rem;
+               font-size: 0.86rem; color: var(--muted); }
+    .contact a { color: #cbd7e4; text-decoration: none; border-bottom: 1px solid var(--line); }
+    .contact a:hover { color: #fff; }
+
+    @media (max-width: 720px) {
+        body { padding: 1rem 0.75rem; }
+        .pad { padding: 2rem 1.5rem; }
+        .mast-grid { grid-template-columns: 1fr; }
+        .chip-wrap { max-width: 17rem; margin: 0.5rem auto 0; }
+        h1 { font-size: 2.1rem; }
+        .tagline { font-size: 1.1rem; }
+        h2 { font-size: 1.5rem; }
+        .close h2 { font-size: 1.6rem; }
+        .trio, .cols { grid-template-columns: 1fr; }
+        .mast-top { flex-direction: column; align-items: flex-start; gap: 1.2rem; margin-bottom: 2rem; }
+        .btn { width: 100%; justify-content: center; }
+    }
+</style>
+</head>
+<body>
+<main class="poster">
+
+    <!-- ============ masthead ============ -->
+    <section class="pad mast">
+        <div class="mast-top">
+            <div class="logo">
+                <img src="logo-symbol-white.png" alt="" aria-hidden="true">
+                <img src="logo-word-white.png" alt="Dnotitia">
+            </div>
+            <span class="kicker">R&amp;D 집중 채용</span>
+        </div>
+
+        <div class="mast-grid">
+            <div>
+                <h1><em>장기기억 AI</em>를 향한<br>위대한 여정</h1>
+                <p class="tagline">Pioneering the Next Era of AI<br>with Vector Intelligence</p>
+                <div class="badges">
+                    <span class="badge badge--line">CB Insights ‘Global AI Agent 유망 기업’ 선정</span>
+                    <span class="badge badge--fill">900억 원 규모 Series A 투자 유치</span>
+                </div>
+            </div>
+            <div class="chip-wrap">
+                <div class="chip-glow" aria-hidden="true"></div>
+                <img src="V110.png" alt="디노티시아 V110 · 벡터 데이터 연산 가속 반도체">
+            </div>
+        </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- ============ about ============ -->
+    <section class="pad">
+        <span class="eyebrow">About Dnotitia</span>
+        <h2>세계 최초의 벡터 데이터 연산 가속기를 만듭니다</h2>
+        <p class="lead">디노티시아는 AI와 데이터 시스템의 융합을 통해 혁신적인 가치를 창출하는 <b>장기기억 인공지능 전문기업</b>으로, CB Insights의 ‘2025 글로벌 AI 100’에 선정되며 기술력을 인정받았습니다.</p>
+        <p class="lead">세계 최초로 개발한 벡터 데이터 연산 가속기 <b>VDPU</b>를 기반으로, 고성능 벡터 데이터베이스 <b>SEAHORSE(씨홀스)</b>를 선보이며 생성형 AI의 핵심 기술인 RAG 솔루션을 구현하고 있습니다.</p>
+
+        <dl class="trio">
+            <div>
+                <dt>VDPU</dt>
+                <dd>세계 최초 벡터 데이터 연산 가속기. 자체 설계한 AI 반도체입니다.</dd>
+            </div>
+            <div>
+                <dt>SEAHORSE</dt>
+                <dd>VDPU 위에서 동작하는 고성능 벡터 데이터베이스입니다.</dd>
+            </div>
+            <div>
+                <dt>RAG 솔루션</dt>
+                <dd>생성형 AI에 장기기억을 더하는 핵심 기술을 구현합니다.</dd>
+            </div>
+        </dl>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- ============ open roles ============ -->
+    <section class="pad">
+        <span class="eyebrow">Open Positions</span>
+        <h2>HW부터 SW까지, 10개 직무를 모집합니다</h2>
+        <p class="lead">직무명을 누르면 상세 공고로 이동합니다.</p>
+
+        <div class="group">
+            <div class="group-head">
+                <span class="group-name">SoC그룹</span>
+                <span class="group-count">5</span>
+                <span class="group-line"></span>
+            </div>
+            <div class="jobs">
+                <a class="job" href="https://dno.career.greetinghr.com/ko/o/206229" target="_blank" rel="noopener">
+                    <span class="job-text">
+                        <span class="job-title">System Architect</span>
+                        <span class="job-desc">AI 인프라의 구조를 설계하는 역할</span>
+                    </span>
+                    <span class="job-go">지원 →</span>
+                </a>
+                <a class="job" href="https://dno.career.greetinghr.com/ko/o/196734" target="_blank" rel="noopener">
+                    <span class="job-text">
+                        <span class="job-title">SoC / RTL Design Engineer</span>
+                        <span class="job-desc">AI 인프라를 움직이는 하드웨어 구조를 만드는 역할</span>
+                    </span>
+                    <span class="job-go">지원 →</span>
+                </a>
+                <a class="job" href="https://dno.career.greetinghr.com/ko/o/196737" target="_blank" rel="noopener">
+                    <span class="job-text">
+                        <span class="job-title">SoC Design Verification Engineer</span>
+                        <span class="job-desc">복잡한 칩 설계를 끝까지 검증하는 역할</span>
+                    </span>
+                    <span class="job-go">지원 →</span>
+                </a>
+                <a class="job" href="https://dno.career.greetinghr.com/ko/o/203021" target="_blank" rel="noopener">
+                    <span class="job-text">
+                        <span class="job-title">SoC Firmware Engineer</span>
+                        <span class="job-desc">칩과 시스템이 만나는 지점을 설계하는 역할</span>
+                    </span>
+                    <span class="job-go">지원 →</span>
+                </a>
+                <a class="job" href="https://dno.career.greetinghr.com/ko/o/203022" target="_blank" rel="noopener">
+                    <span class="job-text">
+                        <span class="job-title">SoC PKG / Board HW Engineer</span>
+                        <span class="job-desc">실리콘 칩에 생명을 불어넣는 옷과 무대</span>
+                    </span>
+                    <span class="job-go">지원 →</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="group-head">
+                <span class="group-name">SW그룹</span>
+                <span class="group-count">3</span>
+                <span class="group-line"></span>
+            </div>
+            <div class="jobs">
+                <a class="job" href="https://dno.career.greetinghr.com/ko/o/198793" target="_blank" rel="noopener">
+                    <span class="job-text">
+                        <span class="job-title">Firmware SW Engineer</span>
+                        <span class="job-desc">제한된 공간에서 성능을 끌어내는 역할</span>
+                    </span>
+                    <span class="job-go">지원 →</span>
+                </a>
+                <a class="job" href="https://dno.career.greetinghr.com/ko/o/198745" target="_blank" rel="noopener">
+                    <span class="job-text">
+                        <span class="job-title">Device Driver SW Engineer</span>
+                        <span class="job-desc">하드웨어와 OS 사이의 통로를 여는 역할</span>
+                    </span>
+                    <span class="job-go">지원 →</span>
+                </a>
+                <a class="job" href="https://dno.career.greetinghr.com/ko/o/199727" target="_blank" rel="noopener">
+                    <span class="job-text">
+                        <span class="job-title">Vector Library Engineer</span>
+                        <span class="job-desc">수학 연산을 빠른 실행 코드로 바꾸는 역할</span>
+                    </span>
+                    <span class="job-go">지원 →</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="group">
+            <div class="group-head">
+                <span class="group-name">Data그룹</span>
+                <span class="group-count">2</span>
+                <span class="group-line"></span>
+            </div>
+            <div class="jobs">
+                <a class="job" href="https://dno.career.greetinghr.com/ko/o/200913" target="_blank" rel="noopener">
+                    <span class="job-text">
+                        <span class="job-title">Vector Database Engineer</span>
+                        <span class="job-desc">AI의 장기 기억 장치를 만드는 역할</span>
+                    </span>
+                    <span class="job-go">지원 →</span>
+                </a>
+                <a class="job" href="https://dno.career.greetinghr.com/ko/o/198903" target="_blank" rel="noopener">
+                    <span class="job-text">
+                        <span class="job-title">Storage System SW Engineer</span>
+                        <span class="job-desc">데이터 흐름의 기반을 단단하게 만드는 역할</span>
+                    </span>
+                    <span class="job-go">지원 →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- ============ conditions + process ============ -->
+    <section class="pad">
+        <div class="cols">
+            <div class="box">
+                <h3>근무 조건</h3>
+                <dl>
+                    <div class="fact">
+                        <dt>근무 형태</dt>
+                        <dd>정규직 / 인턴 (3개월 후 전환 가능)</dd>
+                    </div>
+                    <div class="fact">
+                        <dt>근무지</dt>
+                        <dd>서울시 강남구 (유연근무 &amp; 재택근무 가능)</dd>
+                    </div>
+                </dl>
+            </div>
+            <div class="box">
+                <h3>전형 절차</h3>
+                <ol class="steps">
+                    <li>서류 전형</li>
+                    <li>1차 인터뷰</li>
+                    <li>2차 인터뷰</li>
+                    <li>레퍼런스 체크 및 처우 협의</li>
+                    <li>최종 합류</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <!-- ============ close ============ -->
+    <section class="pad close">
+        <span class="eyebrow">Join Us</span>
+        <h2>지금 바로 디노티시아에 합류하세요</h2>
+        <p class="lead">직무별 상세 소개와 현직자 인터뷰는 채용 홈페이지에서 확인하실 수 있습니다.</p>
+        <div class="actions">
+            <a class="btn btn--primary" href="https://dno.career.greetinghr.com/ko/home" target="_blank" rel="noopener">채용 공고 바로가기 →</a>
+            <a class="btn btn--ghost" href="https://dnotitia-recruit.com" target="_blank" rel="noopener">직무 소개 · 현직자 인터뷰 <span>→</span></a>
+        </div>
+        <div class="contact">
+            <span>커피챗 신청 · <a href="https://forms.gle/yBkLR8Vp8tf61Lh46" target="_blank" rel="noopener">신청 폼</a> &nbsp;|&nbsp; 실시간 문의 · <a href="https://open.kakao.com/o/sw3Shdqi" target="_blank" rel="noopener">카카오톡 오픈채팅</a></span>
+            <span>채용 문의 · <a href="mailto:journey.z@dnotitia.com">journey.z@dnotitia.com</a></span>
+        </div>
+    </section>
+
+</main>
+</body>
+</html>

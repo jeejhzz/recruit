@@ -13,6 +13,7 @@
     <!-- Tailwind CSS 표준 로드 -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
     <style>
         :root {
             --brand-navy: #001529;
@@ -116,7 +117,7 @@
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            border-radius: 1rem;
+            border-radius: 1.25rem;
             border: 1px solid rgba(255, 255, 255, 0.1);
             background: #000;
         }
@@ -296,7 +297,7 @@
         .role-tabs {
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
+            justify-content: flex-start;
             gap: 0.75rem;
             margin-bottom: 3rem;
         }
@@ -312,16 +313,17 @@
             transition: all 0.2s ease;
         }
         .role-tab:hover {
-            border-color: rgba(124, 140, 255, 0.36);
+            border-color: rgba(255, 107, 0, 0.32);
             color: white;
-            background: rgba(124, 140, 255, 0.12);
+            background: rgba(255, 107, 0, 0.09);
         }
         .role-tab.is-active {
-            color: white;
-            background: linear-gradient(135deg, #6856ff, #4936df);
-            border-color: rgba(255, 255, 255, 0.16);
-            box-shadow: 0 12px 28px rgba(73, 54, 223, 0.3);
+            color: var(--brand-navy);
+            background: var(--brand-orange);
+            border-color: transparent;
+            box-shadow: 0 10px 24px rgba(255, 107, 0, 0.26);
         }
+        .role-tab:focus-visible { outline: 2px solid var(--brand-orange); outline-offset: 3px; }
         .role-empty-message {
             display: none;
             margin-top: 2rem;
@@ -346,7 +348,7 @@
             gap: 1.6rem;
             min-height: 15rem;
             padding: 1.9rem;
-            border-radius: 1rem;
+            border-radius: 1.25rem;
             background: #0f1a2c;
             border: 1px solid rgba(255, 255, 255, 0.09);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
@@ -354,25 +356,25 @@
             transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
         }
         .role-card:hover {
-            border-color: rgba(124, 140, 255, 0.4);
+            border-color: rgba(255, 107, 0, 0.34);
             background: #111f36;
             transform: translateY(-3px);
         }
-        .role-card:focus-visible { outline: 2px solid #7c8cff; outline-offset: 3px; }
+        .role-card:focus-visible { outline: 2px solid var(--brand-orange); outline-offset: 3px; }
         .rc-badge {
             align-self: flex-start;
             display: inline-flex; align-items: center;
-            border-radius: 0.45rem;
-            background: linear-gradient(135deg, #6856ff, #4936df);
-            color: #fff; padding: 0.34rem 0.65rem;
-            font-size: 0.72rem; font-weight: 900; letter-spacing: 0.02em;
-            box-shadow: 0 10px 24px rgba(73, 54, 223, 0.28);
+            border-radius: 9999px;
+            background: rgba(255, 107, 0, 0.09);
+            border: 1px solid rgba(255, 107, 0, 0.26);
+            color: #ff9c4d; padding: 0.3rem 0.72rem;
+            font-size: 0.7rem; font-weight: 800; letter-spacing: 0.08em;
         }
-        .rc-title { margin-top: 1.2rem; color: #7c8cff; font-size: 0.9rem; font-weight: 900; letter-spacing: 0.03em; text-transform: uppercase; line-height: 1.35; }
+        .rc-title { margin-top: 1.25rem; color: #8fa1b8; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; line-height: 1.45; }
         .rc-person { margin-top: 0.6rem; display: flex; align-items: baseline; gap: 0.55rem; flex-wrap: wrap; }
         .rc-person strong { color: #fff; font-size: 1.5rem; font-weight: 900; letter-spacing: -0.03em; }
-        .rc-quote { margin-top: 1rem; color: #e2e8f0; font-size: 0.98rem; font-weight: 700; line-height: 1.55; }
-        .rc-link { color: #7c8cff; font-size: 0.86rem; font-weight: 900; }
+        .rc-quote { margin-top: 1rem; color: #dbe4ee; font-size: 0.98rem; font-weight: 600; line-height: 1.6; word-break: keep-all; }
+        .rc-link { color: var(--brand-orange); font-size: 0.86rem; font-weight: 800; letter-spacing: 0.01em; }
         .role-card-grid {
             display: flex;
             gap: 1.5rem;
@@ -409,6 +411,8 @@
             border-color: rgba(255, 107, 0, 0.35);
             background: rgba(255, 107, 0, 0.12);
         }
+        .role-card-control:focus-visible,
+        .vid-dot:focus-visible { outline: 2px solid var(--brand-orange); outline-offset: 3px; }
         .role-card-image {
             position: relative;
             aspect-ratio: 4 / 3;
@@ -473,7 +477,7 @@
             z-index: 2;
         }
         .role-card-title {
-            color: #7c8cff;
+            color: var(--brand-orange);
             font-size: 0.88rem;
             font-weight: 900;
             letter-spacing: 0.05em;
@@ -514,7 +518,7 @@
             line-height: 1.55;
         }
         .role-card-link {
-            color: #7c8cff;
+            color: var(--brand-orange);
             font-size: 0.86rem;
             font-weight: 900;
             white-space: nowrap;
@@ -549,7 +553,7 @@
             gap: 1.5rem;
             padding: 1.6rem 1.75rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            background: linear-gradient(135deg, rgba(255, 107, 0, 0.10), rgba(124, 140, 255, 0.08));
+            background: linear-gradient(135deg, rgba(255, 107, 0, 0.12), rgba(255, 107, 0, 0.02));
         }
         .interview-kicker {
             color: var(--brand-orange);
@@ -679,8 +683,7 @@
 
         /* ===== Editorial section header ===== */
         .sec-head { margin-bottom: 3.5rem; }
-        .sec-head-center { text-align: center; }
-        .sec-head-center .sec-title { max-width: 46rem; margin-left: auto; margin-right: auto; }
+        .sec-head > .sec-title:first-child { margin-top: 0; }
         .eyebrow {
             display: inline-flex;
             align-items: center;
@@ -699,6 +702,7 @@
         }
         .sec-title {
             margin-top: 1.1rem;
+            word-break: keep-all;
             font-size: clamp(1.9rem, 4vw, 2.55rem);
             font-weight: 900;
             letter-spacing: -0.04em;
@@ -754,12 +758,14 @@
 
         /* ===== Hero actions ===== */
         .hero-sub {
-            margin-top: 1.6rem;
-            max-width: 30rem;
-            color: #b9c6d6;
-            font-size: 1.02rem;
-            font-weight: 500;
-            line-height: 1.7;
+            margin-top: 1.15rem;
+            color: #c6d2e0;
+            font-family: 'EB Garamond', Georgia, 'Liberation Serif', 'Times New Roman', serif;
+            font-size: clamp(1.2rem, 1.72vw, 1.6rem);
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: 0.015em;
+            line-height: 1.5;
         }
         .hero-actions { display: flex; flex-wrap: wrap; gap: 0.85rem; margin-top: 2.1rem; }
         .hero-btn-primary, .hero-btn-ghost {
@@ -778,13 +784,146 @@
             background: rgba(255, 255, 255, 0.03);
         }
         .hero-btn-ghost:hover { border-color: rgba(255, 107, 0, 0.5); background: rgba(255, 107, 0, 0.08); color: #fff; }
+        .hero-btn-ghost .btn-arrow { opacity: 0.45; transition: opacity 0.2s ease, transform 0.2s ease; }
+        .hero-btn-ghost:hover .btn-arrow { opacity: 0.85; transform: translateX(2px); }
 
-        /* ===== Hero V110 chip ===== */
-        .hero-cta { margin-top: 2.5rem; display: flex; justify-content: center; }
+        /* ===== Landing hero ===== */
+        .hero-grid { display: grid; grid-template-columns: 1fr; }
+        .hero-logo { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 2.2rem; }
+        .hero-title {
+            font-size: clamp(2.3rem, 8.2vw, 3rem);
+            word-break: keep-all;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.035em;
+            color: #fff;
+        }
+        .hero-tagline {
+            margin-top: 1.2rem;
+            font-size: clamp(1.45rem, 2.7vw, 2.2rem);
+            font-weight: 700;
+            color: #fff;
+            opacity: 0.9;
+        }
+        .hero-actions-row .hero-btn-primary,
+        .hero-actions-row .hero-btn-ghost {
+            font-size: 1.12rem;
+            padding: 1.15rem 2.1rem;
+        }
+        .hero-actions-row {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.9rem 1.4rem;
+        }
+        .about-badges { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 2.25rem; }
+
+        /* ===== Closing cards ===== */
+        .close-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.9rem;
+            padding: 2.6rem 2.4rem;
+            border-radius: 1.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .close-title {
+            color: #fff;
+            font-size: 1.12rem;
+            font-weight: 800;
+            letter-spacing: -0.01em;
+        }
+        .close-card--ask { text-align: center; }
+        .close-facts { display: grid; gap: 1.35rem; }
+        .close-facts > div + div { border-top: 1px solid rgba(255, 255, 255, 0.07); padding-top: 1.35rem; }
+        .close-facts dt {
+            color: #7d8ba0; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem;
+        }
+        .close-facts dd { color: #fff; font-size: 1.02rem; font-weight: 700; word-break: keep-all; }
+        .close-actions { display: flex; flex-direction: column; gap: 0.75rem; }
+        .close-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 0.95rem 1.5rem; border-radius: 9999px;
+            font-size: 1rem; font-weight: 800; letter-spacing: -0.01em;
+            transition: filter 0.2s ease, transform 0.2s ease, background 0.2s ease;
+        }
+        .close-btn svg { width: 1.15rem; height: 1.15rem; flex: 0 0 auto; }
+        .close-btn:hover { filter: brightness(1.06); transform: translateY(-2px); }
+        .close-btn:focus-visible { outline: 2px solid var(--brand-orange); outline-offset: 3px; }
+        .close-btn--primary {
+            background: var(--brand-orange); color: #fff;
+            box-shadow: 0 14px 32px rgba(255, 107, 0, 0.26);
+        }
+        .close-btn--kakao { background: #FEE500; color: #371D1E; }
+
+        /* ===== Video carousel ===== */
+        .vid-carousel { border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 2.5rem; }
+        .vid-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.3rem; }
+        .vid-bar-title {
+            font-size: 0.72rem; font-weight: 800; letter-spacing: 0.24em;
+            text-transform: uppercase; color: #ff8a3d;
+        }
+        .vid-nav { display: flex; gap: 0.6rem; flex: 0 0 auto; }
+        .vid-btn {
+            width: 2.6rem; height: 2.6rem; display: inline-grid; place-items: center;
+            border-radius: 9999px; border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.05); color: #fff;
+            font-size: 1.2rem; font-weight: 900; line-height: 1; cursor: pointer;
+            transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+        }
+        .vid-btn:hover { border-color: rgba(255, 107, 0, 0.4); background: rgba(255, 107, 0, 0.12); transform: translateY(-1px); }
+        .vid-btn:focus-visible { outline: 2px solid var(--brand-orange); outline-offset: 2px; }
+        .vid-track {
+            display: flex; gap: 2rem;
+            overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+            scrollbar-width: none; -ms-overflow-style: none;
+        }
+        .vid-track::-webkit-scrollbar { display: none; }
+        .vid-item { flex: 0 0 calc((100% - 2rem) / 2); min-width: 0; scroll-snap-align: start; }
+        .vid-cap {
+            margin-top: 0.85rem; padding-left: 0.5rem;
+            border-left: 2px solid var(--brand-orange);
+            color: #94a3b8; font-size: 0.875rem; font-weight: 700;
+        }
+        .vid-dots { display: flex; justify-content: center; gap: 0.45rem; margin-top: 1.6rem; }
+        .vid-dot {
+            width: 0.45rem; height: 0.45rem; padding: 0; border: 0; border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.22); cursor: pointer;
+            transition: background 0.25s ease, width 0.25s ease;
+        }
+        .vid-dot.is-active { width: 1.5rem; background: var(--brand-orange); }
+        @media (max-width: 767px) {
+            .vid-track { gap: 1.25rem; }
+            .vid-item { flex-basis: 100%; }
+        }
+        @media (prefers-reduced-motion: reduce) { .vid-track { scroll-behavior: auto; } }
+        @media (min-width: 900px) {
+            /* headline runs the full width so it stays on one line at full size,
+               the chip sits beside the tagline, actions span the width underneath */
+            .hero-grid {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 470px);
+                grid-template-areas:
+                    "logo  logo"
+                    "title title"
+                    "aside chip";
+                column-gap: 2.5rem;
+                row-gap: 2.75rem;
+                margin-inline: calc(-1 * clamp(0px, (100vw - 100% - 5rem) / 2, 11rem));
+            }
+            .hero-logo { grid-area: logo; margin-bottom: 0; }
+            .hero-title { grid-area: title; white-space: nowrap; font-size: min(4.9rem, 6vw); }
+            .hero-aside { grid-area: aside; align-self: center; }
+            /* the masked chip leaves ~64px of empty pixels at the bottom of its box;
+               reclaim it from layout so the hero closes up (image itself is untouched) */
+            .hero-chip-stage { grid-area: chip; margin-bottom: -3.75rem; }
+        }
         .hero-chip-stage {
             position: relative;
-            margin: 1.25rem auto 0;
-            width: min(100%, 600px);
+            width: 100%;
             display: grid;
             place-items: center;
         }
@@ -793,7 +932,7 @@
             display: block;
             position: relative;
             width: 100%;
-            aspect-ratio: 1 / 0.84;
+            aspect-ratio: 1 / 0.92;
         }
         .hero-chip-stage .hero-chip {
             position: absolute;
@@ -939,8 +1078,9 @@
             transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
         }
         .vibe-card:hover { transform: translateY(-4px); border-color: rgba(255, 107, 0, 0.35); background: rgba(255, 107, 0, 0.045); }
-        .vibe-emoji { display: block; font-size: 1.9rem; line-height: 1; }
-        .vibe-card h3 { margin-top: 1rem; color: #fff; font-weight: 800; font-size: 1.12rem; letter-spacing: -0.02em; }
+        .vibe-ico { display: block; width: 2.05rem; height: 2.05rem; color: var(--brand-orange); }
+        .vibe-ico svg { width: 100%; height: 100%; display: block; }
+        .vibe-card h3 { margin-top: 1.1rem; color: #fff; font-weight: 800; font-size: 1.12rem; letter-spacing: -0.02em; }
         .vibe-card p { margin-top: 0.55rem; color: #94a3b8; font-size: 0.94rem; line-height: 1.7; }
         .pull-quote {
             margin-top: 1.5rem;
@@ -1035,8 +1175,8 @@
             .interview-modal { padding: 0.75rem; }
             .interview-header,
             .interview-body { padding: 1.25rem; }
-            .hero-cta { margin-top: 2rem; }
-            .hero-chip-stage { margin-top: 1rem; }
+            .hero-logo { margin-bottom: 1.6rem; }
+            .hero-actions-row { margin-top: 1.9rem; }
             .interview-question { font-size: 1.08rem; }
         }
     </style>
@@ -1046,29 +1186,23 @@
     <div class="max-w-4xl mx-auto px-6 py-12 md:py-24">
         
         <!-- Header Section -->
-        <header class="text-center mb-24">
-            <div class="mb-10 flex items-center justify-center gap-3 md:gap-4">
-                <img src="logo-symbol-white.png" alt="" aria-hidden="true" class="h-14 md:h-[4.5rem] w-auto">
-                <img src="logo-word-white.png" alt="Dnotitia" class="h-8 md:h-[2.7rem] w-auto">
+        <header class="hero-grid mb-24">
+            <div class="hero-logo">
+                <img src="logo-symbol-white.png" alt="" aria-hidden="true" class="h-14 md:h-20 w-auto">
+                <img src="logo-word-white.png" alt="Dnotitia" class="h-8 md:h-[2.8rem] w-auto">
             </div>
-            
-            <!-- 인증 및 투자 정보 모듈 -->
-            <div class="flex flex-wrap justify-center gap-3 mb-8">
-                <a href="https://it.donga.com/107569/" target="_blank" class="badge-module text-orange-400 bg-orange-900/20 border border-orange-500/30 hover:bg-orange-500/10">
-                    CB Insights 'Global AI Agent 유망 기업' 선정
-                </a>
-                <a href="https://zdnet.co.kr/view/?no=20260421140808" target="_blank" class="badge-module text-white bg-orange border border-orange-500/50 hover:brightness-110 shadow-lg shadow-orange-600/20">
-                    900억 원 규모 Series A 투자 유치
-                </a>
-            </div>
-            
-            <h1 class="text-4xl md:text-[3.55rem] font-extrabold mb-6 leading-tight">
+
+            <h1 class="hero-title">
                 <span class="text-orange">장기기억 AI</span>를 향한 위대한 여정
             </h1>
-            <p class="text-white text-2xl md:text-3xl font-bold opacity-90">디노티시아와 함께합시다</p>
 
-            <div class="hero-cta">
-                <a href="https://dno.career.greetinghr.com/ko/home" target="_blank" rel="noopener" class="hero-btn-primary">채용 공고 바로가기 →</a>
+            <div class="hero-aside">
+                <p class="hero-tagline">디노티시아와 함께합시다</p>
+                <p class="hero-sub">Pioneering the Next Era of AI with Vector Intelligence</p>
+                <div class="hero-actions-row">
+                    <a href="https://dno.career.greetinghr.com/ko/home" target="_blank" rel="noopener" class="hero-btn-primary">채용 공고 바로가기 →</a>
+                    <a href="#roles" class="hero-btn-ghost">직무 소개 보러가기<span class="btn-arrow" aria-hidden="true">→</span></a>
+                </div>
             </div>
 
             <div class="hero-chip-stage">
@@ -1080,35 +1214,64 @@
         </header>
 
         <!-- About Dnotitia -->
-        <section class="glass-card rounded-3xl p-10 md:p-14 mb-24">
-            <h2 class="text-3xl font-bold mb-8 italic text-orange border-b border-white/10 pb-4">About Dnotitia</h2>
+        <section class="glass-card rounded-[1.25rem] p-10 md:p-14 mb-24">
+            <div class="sec-head" style="margin-bottom: 2.25rem;">
+                <h2 class="sec-title">About Dnotitia</h2>
+            </div>
+
+            <!-- 인증 및 투자 정보 모듈 -->
+            <div class="about-badges">
+                <a href="https://it.donga.com/107569/" target="_blank" class="badge-module text-orange-400 bg-orange-900/20 border border-orange-500/30 hover:bg-orange-500/10">
+                    CB Insights 'Global AI Agent 유망 기업' 선정
+                </a>
+                <a href="https://zdnet.co.kr/view/?no=20260421140808" target="_blank" class="badge-module text-white bg-orange border border-orange-500/50 hover:brightness-110 shadow-lg shadow-orange-600/20">
+                    900억 원 규모 Series A 투자 유치
+                </a>
+            </div>
             <div class="text-slate-300 leading-relaxed space-y-6 text-lg mb-12">
                 <p>디노티시아는 AI와 데이터 시스템의 융합을 통해 혁신적인 가치를 창출하는 <a href="https://www.koit.co.kr/news/articleView.html?idxno=205883" target="_blank" class="news-link">장기기억 인공지능 전문기업</a>으로, CB Insights의 <a href="https://zdnet.co.kr/view/?no=20250425111526" target="_blank" class="news-link">‘2025 글로벌 AI 100’</a>에 선정되며 기술력을 인정받았습니다.</p>
                 <p>세계 최초로 개발한 벡터 데이터 연산 가속기 <a href="https://www.epnc.co.kr/news/articleView.html?idxno=328142" target="_blank" class="news-link">'VDPU'</a>를 기반으로, 고성능 벡터 데이터베이스 <a href="https://www.etnews.com/20260324000436" target="_blank" class="news-link">‘SEAHORSE(씨홀스)’</a>를 선보이며 생성형 AI의 핵심 기술인 RAG 솔루션을 구현하고 있습니다.</p>
             </div>
 
-            <!-- YouTube Video Grid Inside About Section -->
-            <div class="grid md:grid-cols-2 gap-8 border-t border-white/10 pt-10">
-                <!-- Video 1: SEAHORSE 제품 소개 -->
-                <div class="space-y-3">
-                    <div class="video-container shadow-2xl shadow-orange-600/10 hover:border-orange/50 transition-all">
-                        <button type="button" class="yt-facade" data-yt="_V_CGUpwKJ8" data-title="SEAHORSE 제품 소개" aria-label="SEAHORSE 제품 소개 영상 재생">
-                            <img class="yt-facade-img" src="https://i.ytimg.com/vi/_V_CGUpwKJ8/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/_V_CGUpwKJ8/hqdefault.jpg';" alt="" loading="lazy">
-                            <span class="yt-facade-play" aria-hidden="true"></span>
-                        </button>
+            <!-- YouTube videos: auto-advancing carousel -->
+            <div class="vid-carousel">
+                <div class="vid-bar">
+                    <p class="vid-bar-title">Dnotitia on YouTube</p>
+                    <div class="vid-nav">
+                        <button type="button" class="vid-btn" data-vid-nav="prev" aria-label="이전 영상">&lsaquo;</button>
+                        <button type="button" class="vid-btn" data-vid-nav="next" aria-label="다음 영상">&rsaquo;</button>
                     </div>
-                    <p class="text-slate-400 text-sm font-bold pl-2 border-l-2 border-orange">SEAHORSE 제품 소개 영상</p>
                 </div>
-                <!-- Video 2: CTO 인터뷰 -->
-                <div class="space-y-3">
-                    <div class="video-container shadow-2xl shadow-orange-600/10 hover:border-orange/50 transition-all">
-                        <button type="button" class="yt-facade" data-yt="xPEdPYyrbwk" data-title="CTO 인터뷰" aria-label="CTO가 이야기하는 디노티시아 영상 재생">
-                            <img class="yt-facade-img" src="https://i.ytimg.com/vi/xPEdPYyrbwk/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/xPEdPYyrbwk/hqdefault.jpg';" alt="" loading="lazy">
-                            <span class="yt-facade-play" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <p class="text-slate-400 text-sm font-bold pl-2 border-l-2 border-orange">CTO가 이야기하는 디노티시아</p>
+                <div class="vid-track" role="group" aria-label="디노티시아 영상 모음">
+                    <article class="vid-item">
+                        <div class="video-container shadow-2xl shadow-orange-600/10 hover:border-orange/50 transition-all">
+                            <button type="button" class="yt-facade" data-yt="_V_CGUpwKJ8" data-title="SEAHORSE 제품 소개" aria-label="SEAHORSE 제품 소개 영상 영상 재생">
+                                <img class="yt-facade-img" src="https://i.ytimg.com/vi/_V_CGUpwKJ8/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/_V_CGUpwKJ8/hqdefault.jpg';" alt="" loading="lazy">
+                                <span class="yt-facade-play" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <p class="vid-cap">SEAHORSE 제품 소개 영상</p>
+                    </article>
+                    <article class="vid-item">
+                        <div class="video-container shadow-2xl shadow-orange-600/10 hover:border-orange/50 transition-all">
+                            <button type="button" class="yt-facade" data-yt="xPEdPYyrbwk" data-title="디노티시아가 만들어가는 장기기억 AI" aria-label="디노티시아가 만들어가는 장기기억 AI 영상 재생">
+                                <img class="yt-facade-img" src="https://i.ytimg.com/vi/xPEdPYyrbwk/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/xPEdPYyrbwk/hqdefault.jpg';" alt="" loading="lazy">
+                                <span class="yt-facade-play" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <p class="vid-cap">디노티시아가 만들어가는 장기기억 AI</p>
+                    </article>
+                    <article class="vid-item">
+                        <div class="video-container shadow-2xl shadow-orange-600/10 hover:border-orange/50 transition-all">
+                            <button type="button" class="yt-facade" data-yt="_TAjyEEuFv0" data-title="AI 시대의 판도를 바꿀 VDPU" aria-label="AI 시대의 판도를 바꿀 VDPU 영상 재생">
+                                <img class="yt-facade-img" src="https://i.ytimg.com/vi/_TAjyEEuFv0/maxresdefault.jpg" onerror="this.onerror=null;this.src='https://i.ytimg.com/vi/_TAjyEEuFv0/hqdefault.jpg';" alt="" loading="lazy">
+                                <span class="yt-facade-play" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <p class="vid-cap">AI 시대의 판도를 바꿀 VDPU</p>
+                    </article>
                 </div>
+                <div class="vid-dots" aria-label="영상 위치"></div>
             </div>
         </section>
         <script>
@@ -1124,13 +1287,115 @@
                     btn.replaceWith(f);
                 });
             });
+
+            /* Video carousel: advances every 15s, plus manual controls.
+               Scrolls the track only (never scrollIntoView) so the page never jumps. */
+            (function () {
+                var track = document.querySelector('.vid-track');
+                var dotsWrap = document.querySelector('.vid-dots');
+                if (!track || !dotsWrap) return;
+                var items = [].slice.call(track.querySelectorAll('.vid-item'));
+                if (!items.length) return;
+
+                var INTERVAL = 15000;
+                var idx = 0, timer = null, dots = [], paused = false, stopped = false;
+
+                function perView() {
+                    var w = items[0].getBoundingClientRect().width;
+                    return w ? Math.max(1, Math.round(track.clientWidth / w)) : 1;
+                }
+                function maxIndex() { return Math.max(0, items.length - perView()); }
+
+                function goTo(i, smooth) {
+                    var max = maxIndex();
+                    idx = i < 0 ? max : (i > max ? 0 : i);
+                    track.scrollTo({
+                        left: items[idx].offsetLeft - items[0].offsetLeft,
+                        behavior: smooth === false ? 'auto' : 'smooth'
+                    });
+                    syncDots();
+                }
+                function syncDots() {
+                    dots.forEach(function (d, i) {
+                        d.classList.toggle('is-active', i === idx);
+                        d.setAttribute('aria-current', i === idx ? 'true' : 'false');
+                    });
+                }
+                function buildDots() {
+                    var n = maxIndex() + 1;
+                    dotsWrap.innerHTML = '';
+                    dots = [];
+                    dotsWrap.style.display = n <= 1 ? 'none' : '';
+                    for (var i = 0; i < n; i++) {
+                        var d = document.createElement('button');
+                        d.type = 'button';
+                        d.className = 'vid-dot';
+                        d.setAttribute('aria-label', (i + 1) + '번째 영상으로 이동');
+                        d.addEventListener('click', (function (k) {
+                            return function () { goTo(k); restart(); };
+                        })(i));
+                        dotsWrap.appendChild(d);
+                        dots.push(d);
+                    }
+                    if (idx > maxIndex()) idx = maxIndex();
+                    syncDots();
+                }
+                function restart() {
+                    window.clearInterval(timer);
+                    if (stopped) return;
+                    timer = window.setInterval(function () {
+                        if (!paused) goTo(idx + 1);
+                    }, INTERVAL);
+                }
+
+                document.querySelectorAll('[data-vid-nav]').forEach(function (b) {
+                    b.addEventListener('click', function () {
+                        goTo(idx + (b.getAttribute('data-vid-nav') === 'next' ? 1 : -1));
+                        restart();
+                    });
+                });
+
+                track.addEventListener('mouseenter', function () { paused = true; });
+                track.addEventListener('mouseleave', function () { paused = false; });
+                track.addEventListener('focusin', function () { paused = true; });
+                track.addEventListener('focusout', function () { paused = false; });
+
+                /* once a video is opened, stop auto-advancing */
+                track.addEventListener('click', function (e) {
+                    if (e.target.closest('.yt-facade, iframe')) { stopped = true; window.clearInterval(timer); }
+                });
+
+                /* keep the dots honest when the user swipes the track */
+                var settle;
+                track.addEventListener('scroll', function () {
+                    window.clearTimeout(settle);
+                    settle = window.setTimeout(function () {
+                        var base = items[0].offsetLeft, best = 0, bestD = Infinity;
+                        items.forEach(function (it, i) {
+                            var d = Math.abs((it.offsetLeft - base) - track.scrollLeft);
+                            if (d < bestD) { bestD = d; best = i; }
+                        });
+                        idx = Math.min(best, maxIndex());
+                        syncDots();
+                    }, 120);
+                });
+
+                var rz;
+                window.addEventListener('resize', function () {
+                    window.clearTimeout(rz);
+                    rz = window.setTimeout(function () { buildDots(); goTo(idx, false); }, 150);
+                });
+
+                buildDots();
+                restart();
+            })();
         </script>
 
         <!-- Role Introduction -->
         <section id="roles" class="role-intro mb-24">
-            <div class="sec-head sec-head-center">
-                <span class="eyebrow">👥 People at Dnotitia</span>
-                <h2 class="sec-title">디노티시아는 HW부터 SW까지<br class="hidden sm:block"> Full-Stack 전문가를 보유하고 있어요.</h2>
+            <div class="sec-head">
+                <span class="eyebrow">People at Dnotitia</span>
+                <h2 class="sec-title">디노티시아에서는 HW부터 SW까지<br class="hidden sm:block"> Full-Stack 전문가들과 함께 할 수 있어요</h2>
             </div>
             <div class="role-tabs" aria-label="직무소개 그룹 필터">
                 <button type="button" class="role-tab is-active" data-role-filter="all" aria-pressed="true">전체보기</button>
@@ -1240,28 +1505,28 @@
         <!-- How We Collaborate -->
         <section class="mb-24">
             <div class="sec-head">
-                <span class="eyebrow">🤝 How We Work</span>
+                <span class="eyebrow">How We Work</span>
                 <h2 class="sec-title">디노티시아가 일하는 법</h2>
-                <p class="sec-lede">디노티시아 구성원들이 꼽은 협업의 원칙이에요.</p>
+                <p class="sec-lede">구성원들이 꼽은 협업의 원칙이에요.</p>
             </div>
             <div class="grid sm:grid-cols-2 gap-4">
                 <div class="vibe-card">
-                    <span class="vibe-emoji">💬</span>
+                    <span class="vibe-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a7 7 0 0 1-7 7H8l-4 3v-5.5A7 7 0 0 1 8 5h5a7 7 0 0 1 7 7Z"/><path d="M10.4 9.8a1.7 1.7 0 1 1 2.4 1.6c-.5.3-.9.7-.9 1.3v.3"/><path d="M11.9 15.6h.01"/></svg></span>
                     <h3>이해될 때까지 질문</h3>
                     <p>그 순간엔 시간이 걸려도, 서로 완전히 이해하고 나면 실수가 줄고 결국 더 빨라져요.</p>
                 </div>
                 <div class="vibe-card">
-                    <span class="vibe-emoji">📊</span>
+                    <span class="vibe-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"/><path d="M7 20v-5"/><path d="M12 20V9"/><path d="M17 20v-8"/></svg></span>
                     <h3>감이 아니라 데이터로</h3>
                     <p>로그·시뮬레이션·계측 데이터 같은 객관적인 근거로 이야기하면 합의가 빨라요.</p>
                 </div>
                 <div class="vibe-card">
-                    <span class="vibe-emoji">📝</span>
+                    <span class="vibe-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8Z"/><path d="M14 3v5h5"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></span>
                     <h3>기억 대신 기록으로</h3>
                     <p>결정은 문서로 남겨, 모두가 같은 방향을 바라보게 해요.</p>
                 </div>
                 <div class="vibe-card">
-                    <span class="vibe-emoji">🧩</span>
+                    <span class="vibe-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16"/><path d="M7 20h10"/><path d="M4 7.5h16"/><path d="m4 7.5-2 4.8a2.9 2.9 0 0 0 5.8 0Z"/><path d="m20 7.5 2 4.8a2.9 2.9 0 0 1-5.8 0Z"/></svg></span>
                     <h3>직급보다 논리가 우선</h3>
                     <p>연차와 상관없이 자유롭게 의견 내고, 책임을 따지기보다 함께 문제를 풀어요.</p>
                 </div>
@@ -1271,38 +1536,38 @@
         <!-- Why Dnotitia -->
         <section class="mb-24">
             <div class="sec-head">
-                <span class="eyebrow">✨ Why Dnotitia</span>
+                <span class="eyebrow">Why Dnotitia</span>
                 <h2 class="sec-title">디노티시아가 다른 점</h2>
-                <p class="sec-lede">디노티시아 구성원들이 직접 느낀 우리 회사의 매력이에요.</p>
+                <p class="sec-lede">구성원들이 직접 느낀 우리 회사의 매력이에요.</p>
             </div>
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div class="vibe-card">
-                    <span class="vibe-emoji">🚀</span>
+                    <span class="vibe-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="7.5" y="7.5" width="9" height="9" rx="1.4"/><path d="M10 3.5v4M14 3.5v4M10 16.5v4M14 16.5v4"/><path d="M3.5 10h4M3.5 14h4M16.5 10h4M16.5 14h4"/></svg></span>
                     <h3>세상에 없는 칩을 만들어요</h3>
                     <p>세계 최초 VDPU. 레퍼런스 없이 새로운 AI 반도체를 직접 설계하고 구현해요.</p>
                 </div>
                 <div class="vibe-card">
-                    <span class="vibe-emoji">🎯</span>
+                    <span class="vibe-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 18h5"/><path d="M10.5 21h3"/><path d="M12 3a5.8 5.8 0 0 0-3.7 10.3c.6.5.9 1.2.9 1.9V16h5.6v-.8c0-.7.3-1.4.9-1.9A5.8 5.8 0 0 0 12 3Z"/></svg></span>
                     <h3>내 아이디어가 현실이 돼요</h3>
                     <p>빠른 의사결정과 큰 영향력. 제안이 실제 설계에 반영되는 걸 눈으로 확인해요.</p>
                 </div>
                 <div class="vibe-card">
-                    <span class="vibe-emoji">🌱</span>
+                    <span class="vibe-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15"/><path d="m15 7.5 4.5 4.5L15 16.5"/><circle cx="4" cy="12" r="1.5"/><circle cx="11" cy="12" r="1.5"/></svg></span>
                     <h3>A부터 Z까지 경험해요</h3>
                     <p>파편이 아니라 제품의 전 과정을 가까이서 경험하며 빠르게 성장해요.</p>
                 </div>
                 <div class="vibe-card">
-                    <span class="vibe-emoji">🗣️</span>
+                    <span class="vibe-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 10.5V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h1v3l3.4-3"/><path d="M10.5 11.5a2 2 0 0 1 2-2H19a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-1v3l-3.4-3h-2.1a2 2 0 0 1-2-2Z"/></svg></span>
                     <h3>솔직한 피드백을 환영해요</h3>
                     <p>개선점을 솔직히 말해도 괜찮은 문화. 매일 조금씩 더 나은 방향으로 나아가요.</p>
                 </div>
                 <div class="vibe-card">
-                    <span class="vibe-emoji">🔗</span>
+                    <span class="vibe-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="6" r="2.4"/><circle cx="18.5" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path d="M7.9 6h8.2"/><path d="m7.2 8 3.5 8"/><path d="m16.8 8-3.5 8"/></svg></span>
                     <h3>팀 경계가 유연해요</h3>
                     <p>문제가 생기면 팀을 넘어 함께 모여 원인을 찾고 해결해요.</p>
                 </div>
                 <div class="vibe-card">
-                    <span class="vibe-emoji">🔥</span>
+                    <span class="vibe-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8.5"/><path d="M12 12.5c0-3.1 2.5-5.6 5.6-5.6 0 3.1-2.5 5.6-5.6 5.6Z"/><path d="M12 14.5c0-2.6-2.1-4.7-4.7-4.7 0 2.6 2.1 4.7 4.7 4.7Z"/><path d="M4 21h16"/></svg></span>
                     <h3>동료들과 함께 성장해요</h3>
                     <p>업무에서도 삶에서도 매일 배우게 되는, 향상심 있는 사람들과 함께해요.</p>
                 </div>
@@ -1312,7 +1577,7 @@
         <!-- Benefits -->
         <section class="mb-24">
             <div class="sec-head">
-                <span class="eyebrow">🎁 Life at Dnotitia</span>
+                <span class="eyebrow">Life at Dnotitia</span>
                 <h2 class="sec-title">디노티시아는 구성원의 성장에 진심을 다합니다</h2>
             </div>
             <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-x-10 gap-y-9">
@@ -1364,7 +1629,7 @@
         <!-- Recruitment Process -->
         <section class="mb-24">
             <div class="sec-head">
-                <span class="eyebrow">📮 Recruit Process</span>
+                <span class="eyebrow">Recruit Process</span>
                 <h2 class="sec-title">지금 바로 디노티시아에 합류하세요</h2>
             </div>
             <div class="proc">
@@ -1389,7 +1654,7 @@
                 <div class="proc-step">
                     <div class="proc-node">4</div>
                     <div class="proc-copy">
-                        <h4>레퍼런스 체크 및 처우 협의</h4>
+                        <h4>레퍼런스 체크<br>및 처우 협의</h4>
                     </div>
                 </div>
                 <div class="proc-step">
@@ -1403,26 +1668,27 @@
         </section>
 
         <!-- CTA Section -->
-        <div class="grid md:grid-cols-2 gap-8 mb-24">
-            <div class="p-10 border border-white/10 rounded-3xl bg-white/[0.01]">
-                <h3 class="text-xl font-bold mb-8 text-orange">근무 조건</h3>
-                <div class="space-y-6 text-lg">
-                    <div class="border-b border-white/5 pb-4">
-                        <p class="text-slate-500 text-sm block mb-1">근무 형태</p>
-                        <p class="font-bold">정규직 / 인턴 (3개월 후 전환 가능)</p>
+        <div class="grid md:grid-cols-2 gap-6 mb-24 items-stretch">
+            <div class="close-card">
+                <h3 class="close-title">근무 조건</h3>
+                <dl class="close-facts">
+                    <div>
+                        <dt>근무 형태</dt>
+                        <dd>정규직 / 인턴 (3개월 후 전환 가능)</dd>
                     </div>
                     <div>
-                        <p class="text-slate-500 text-sm block mb-1">근무지</p>
-                        <p class="font-bold text-base">서울시 강남구 (유연근무 &amp; 재택근무 가능)</p>
+                        <dt>근무지</dt>
+                        <dd>서울시 강남구 (유연근무 &amp; 재택근무 가능)</dd>
                     </div>
-                </div>
+                </dl>
             </div>
-            <div class="glass-card rounded-3xl p-10 flex flex-col justify-center text-center">
-                <p class="text-xl font-bold mb-8">디노티시아 채용이 궁금하신가요?</p>
-                <div class="flex flex-col gap-4">
-                    <a href="https://forms.gle/yBkLR8Vp8tf61Lh46" target="_blank" class="bg-orange px-8 py-4 rounded-2xl font-bold text-center text-white shadow-xl shadow-orange-600/30 hover:brightness-110 transition-all text-lg">커피챗 신청하기</a>
-                    <a href="https://open.kakao.com/o/sw3Shdqi" target="_blank" class="btn-kakao px-8 py-4 rounded-2xl font-bold shadow-lg transition-all flex items-center justify-center text-lg bg-[#FEE500] text-[#371d1e]">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 3.134-9 7 0 2.39 1.55 4.496 3.94 5.75-.145.54-.52 1.94-.596 2.22-.09.333.11.328.232.247.095-.064 1.514-.94 2.115-1.32.417.1.848.153 1.309.153 4.97 0 9-3.134 9-7s-4.03-7-9-7z"/></svg> 카카오톡 실시간 상담
+            <div class="close-card close-card--ask">
+                <h3 class="close-title">채용이 궁금하신가요?</h3>
+                <div class="close-actions">
+                    <a href="https://forms.gle/yBkLR8Vp8tf61Lh46" target="_blank" rel="noopener" class="close-btn close-btn--primary">커피챗 신청하기</a>
+                    <a href="https://open.kakao.com/o/sw3Shdqi" target="_blank" rel="noopener" class="close-btn close-btn--kakao">
+                        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3c-4.97 0-9 3.134-9 7 0 2.39 1.55 4.496 3.94 5.75-.145.54-.52 1.94-.596 2.22-.09.333.11.328.232.247.095-.064 1.514-.94 2.115-1.32.417.1.848.153 1.309.153 4.97 0 9-3.134 9-7s-4.03-7-9-7z"/></svg>
+                        카카오톡 실시간 상담
                     </a>
                 </div>
             </div>
@@ -1430,7 +1696,7 @@
 
         <footer class="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-sm text-slate-400 gap-6">
             <div class="flex items-center">
-                <span class="bg-orange/10 text-orange font-bold px-3 py-1 rounded-md mr-4">문의</span>
+                <span class="bg-orange/10 text-orange font-bold px-3 py-1 rounded-full mr-4 text-xs tracking-wider">문의</span>
                 <a href="mailto:journey.z@dnotitia.com" class="hover:text-white transition-colors border-b border-white/10">journey.z@dnotitia.com</a>
             </div>
             <p class="opacity-60 text-xs">© 2025 Dnotitia Inc. All rights reserved.</p>
